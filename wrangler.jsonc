@@ -1,0 +1,8 @@
+{
+  "name": "tmlgarageservices",
+  "compatibility_date": "2026-08-04",
+  "assets": {
+    "directory": "./site",
+    "not_found_handling": "404-page"
+  }
+}
