@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Render the TML redesign v2: content.json + templates -> site/new/
+"""Render the TML redesign v3 "Golden Hour": content.json -> site/new/
 
-Design system "The Workshop": the garage door as the one committed visual
-idea (opening-door hero, slat seams, sharp steel corners), Big Shoulders
-Display signage type, workwear-olive drenches, hi-vis conversion moments.
-Site copy is ported verbatim from the legacy mirror; only structure,
-hierarchy, and dead links change.
+Warm premium editorial register (per Aaron's reference): cream surfaces,
+Source Serif 4 sentence-case headlines, rounded photo cards with badges,
+stat tiles, pill buttons, soft bento sections. TML's olive green is the
+accent. Copy is ported verbatim from the legacy mirror; SHOUTING legacy
+headings are sentence-cased for the serif register (presentation only).
 """
 import html as htmllib
 import json
@@ -33,8 +33,8 @@ A = "/assets/66b2dae9e779df43d0d269c9"
 LOGO = f"{A}/66b2f5077df3a3b06a15a1bd_TMLGarageServices-Logo-web.svg"
 LOGO_W = f"{A}/66b513d8d31e80c12f51920d_TMLGarageServices-Logo-web-wh.svg"
 FAVICON = f"{A}/66b51dc4282e5ee4d47ceef1_TML-garage-services-favicon-32.png"
-HERO_POSTER = f"{A}/6a6638dbf310548aa6535691_copy_AE586C56-1DE3-4700-978C-82BBC75C202F_poster.0000000.jpg"
-HERO_MP4 = f"{A}/6a6638dbf310548aa6535691_copy_AE586C56-1DE3-4700-978C-82BBC75C202F_mp4.mp4"
+HERO_IMG = f"{A}/66b5115cc6a1fdc1f8b546d6_modern-garage-door-services.jpg"
+BANNER_IMG = f"{A}/6a6638dbf310548aa6535691_copy_AE586C56-1DE3-4700-978C-82BBC75C202F_poster.0000000.jpg"
 TEAM_IMG = f"{A}/6a6f95756ecb7a47b54e82e8_IMG_3555.jpg"
 BADGES = [
     (f"{A}/66b2dae9e779df43d0d26a8a_angies-list-award.png", "Angi Super Service Award 2019"),
@@ -45,16 +45,16 @@ BADGES = [
 SERVICES = [
     ("/our-services/residential-garage-door-services", "Residential Garage Door Services",
      f"{A}/6a542a3cc1d76f4028c06fb8_2C6A44D6-3090-4449-81C8-D96132FB7ED7.PNG",
-     "New doors, repairs, and tune-ups for your home."),
+     "New doors, repairs, and tune-ups for your home.", "Residential"),
     ("/our-services/garage-door-spring-replacement", "Garage Door Spring Replacement",
      f"{A}/6a543368b89f6b6fe88b1284_1F1EB104-997F-40F2-AAC8-9630A0DF66CC.PNG",
-     "Snapped spring? Same-day replacement, done safely."),
+     "Snapped spring? Same-day replacement, done safely.", "Same-day"),
     ("/our-services/garage-door-opener-installation", "Garage Door Opener Services",
      f"{A}/6a542e2ec6b8791b21582f07_Photo%20Jul%2012%202026%2C%207%2009%2027%20PM%20(2)%20(1).png",
-     "LiftMaster, Genie, Chamberlain & Craftsman openers."),
+     "LiftMaster, Genie, Chamberlain & Craftsman openers.", "All brands"),
     ("/our-services/commercial-garage-door-installation", "Commercial Garage Door Installation",
      f"{A}/6a543355c034cb7d551b686f_E796B398-C84E-4B4B-8948-E05CBCB1864E.PNG",
-     "Overhead doors and gates for Houston businesses."),
+     "Overhead doors and gates for Houston businesses.", "Commercial"),
 ]
 BRANDS = [
     ("/brands/liftmaster-garage-door-opener-repair-and-installation", "LiftMaster"),
@@ -69,11 +69,29 @@ TRIAGE = [
     ("New door", "/our-services/residential-garage-door-services"),
     ("Commercial", "/our-services/commercial-garage-door-installation"),
 ]
-# their promise list, verbatim, on the move
-TICKER = ["Same day on-time service", "Emergency services", "No extra charges for weekend appointments",
-          "Well-trained and insured technicians", "Quality workmanship for all jobs", "100% satisfaction guaranteed"]
 
 esc = htmllib.escape
+
+# sentence-case shouty legacy headings for the serif register (presentation only)
+PROPER = {"tml": "TML", "t.m.l.": "T.M.L.", "tx": "TX", "houston": "Houston", "conroe": "Conroe",
+          "woodlands": "Woodlands", "magnolia": "Magnolia", "tomball": "Tomball",
+          "liftmaster": "LiftMaster", "genie": "Genie", "chamberlain": "Chamberlain",
+          "craftsman": "Craftsman", "angi": "Angi", "homeadvisor": "HomeAdvisor", "i": "I"}
+def sentence(s: str) -> str:
+    letters = [c for c in s if c.isalpha()]
+    if not letters or sum(c.isupper() for c in letters) / len(letters) < 0.7 or len(s) < 7:
+        return s
+    low = s.lower()
+    words = [PROPER.get(w.strip(".,!?&:;()"), None) or w for w in low.split(" ")]
+    fixed = []
+    for w in low.split(" "):
+        core = w.strip(".,!?&:;()")
+        if core in PROPER:
+            fixed.append(w.replace(core, PROPER[core]))
+        else:
+            fixed.append(w)
+    out = " ".join(fixed)
+    return out[:1].upper() + out[1:]
 
 def nw(path: str) -> str:
     path = path.strip()
@@ -106,6 +124,15 @@ def links(text: str) -> str:
         return f'<a href="{nw(m.group(1).replace(" ", ""))}">{m.group(2)}</a>'
     return re.sub(r"\[\[([^|\]]+)\|(.*?)\]\]", sub, out)
 
+ICONS = {
+    "wrench": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4.5 4.5 0 0 0-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 0 0 6-6L14 13l-3-3z"/></svg>',
+    "shield": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-2.9 8.1-7 10-4.1-1.9-7-5.6-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg>',
+    "star": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L12 16.9l-5.3 2.7 1-5.8-4.2-4.1 5.9-.9z"/></svg>',
+    "bolt": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h6l-1 8 9-12h-6z"/></svg>',
+    "door": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13"/><path d="M7 21v-9h10v9M7 15h10"/></svg>',
+    "phone": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>',
+}
+
 GTM = """<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M5ZMMSJX');</script>"""
 GTM_NS = """<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5ZMMSJX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>"""
 
@@ -121,7 +148,7 @@ def head(title, desc):
 <link rel="icon" href="{FAVICON}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/new/style.css">
 <script type="application/ld+json">{{"@context":"https://schema.org","@type":"LocalBusiness","name":"TML Garage Door Services","telephone":"+18328878747","email":"{EMAIL}","address":{{"@type":"PostalAddress","streetAddress":"15232 Saddlewood Dr","addressLocality":"Conroe","addressRegion":"TX","postalCode":"77384"}},"areaServed":["The Woodlands TX","Conroe TX","Spring TX","Houston TX"],"url":"https://www.tmlgarageservices.com/"}}</script>
 {GTM}
@@ -135,7 +162,7 @@ def nav_dropdown(label, items):
     return f"<details><summary>{label}</summary><div>{lis}</div></details>"
 
 def header():
-    svc_items = [(nw(h), t) for h, t, _, _ in SERVICES] + [("/new/services", "All services →")]
+    svc_items = [(nw(h), t) for h, t, _, _, _ in SERVICES] + [("/new/services", "All services →")]
     brand_items = [(nw(h), f"{t} repair & installation") for h, t in BRANDS]
     return f"""
 <header class="top">
@@ -150,24 +177,24 @@ def header():
     </nav>
     <div class="top-cta">
       <a class="btn btn-ghost" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book online</a>
-      <a class="btn btn-vis" href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a>
+      <a class="btn btn-olive" href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a>
       <button class="menu-btn" id="menu-open" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
   </div>
 </header>
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
   <div class="menu-head">
-    <img src="{LOGO_W}" alt="TML Garage Services">
+    <img src="{LOGO}" alt="TML Garage Services">
     <button class="menu-close" id="menu-close" aria-label="Close menu">
-      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
   </div>
   <ul class="menu-links">
     <li><a href="/new">Home</a></li>
     <li><a href="/new/services">Services</a>
-      <ul class="menu-sub">{"".join(f'<li><a href="{nw(h)}">{esc(t)}</a></li>' for h, t, _, _ in SERVICES)}</ul></li>
+      <ul class="menu-sub">{"".join(f'<li><a href="{nw(h)}">{esc(t)}</a></li>' for h, t, _, _, _ in SERVICES)}</ul></li>
     <li><a href="{nw(BRANDS[0][0])}">Brands</a>
       <ul class="menu-sub">{"".join(f'<li><a href="{nw(h)}">{esc(t)}</a></li>' for h, t in BRANDS)}</ul></li>
     <li><a href="/new/service-areas/the-woodlands-tx">Service areas</a></li>
@@ -175,38 +202,28 @@ def header():
     <li><a href="/new/contact">Contact</a></li>
   </ul>
   <div class="menu-foot">
-    <a class="btn btn-vis" href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a>
-    <a class="btn btn-ghost-light" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book online</a>
+    <a class="btn btn-olive" href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a>
+    <a class="btn btn-ghost" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book online</a>
   </div>
 </div>
 """
 
 CALLBAR = f"""
 <div class="callbar" role="region" aria-label="Quick contact">
-  <a class="btn btn-vis" href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a>
-  <a class="btn btn-ghost-light" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book</a>
+  <a class="btn btn-olive" href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a>
+  <a class="btn btn-ghost" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book</a>
 </div>
 """
 
-def ticker():
-    items = "".join(f"<span>{esc(t)}&nbsp;&nbsp;<b>▪</b></span>" for t in TICKER)
+def cta_close(heading="Broken door? We're local and we answer."):
     return f"""
-<div class="ticker" aria-label="Service promises">
-  <div class="ticker-track">{items}{items}</div>
-</div>
-"""
-
-def cta_band(heading="Broken door? We're local and we answer."):
-    return f"""
-<section class="cta-band">
-  <div class="wrap">
-    <div class="rise">
-      <h2>{esc(heading)}</h2>
-      <a class="cta-phone" href="{PHONE_HREF}">{PHONE_DISPLAY}</a>
-    </div>
-    <div class="cta-actions rise rise-d1">
-      <a class="btn btn-ink" href="{PHONE_HREF}">Call now</a>
-      <a class="btn btn-ghost" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book online</a>
+<section class="cta-close">
+  <div class="wrap rise">
+    <h2>{esc(heading)}</h2>
+    <p>Same-day service, upfront pricing, and a real person on the line.</p>
+    <div class="cta-actions">
+      <a class="btn btn-olive" href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a>
+      <a class="btn btn-white" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book online</a>
     </div>
   </div>
 </section>
@@ -220,7 +237,6 @@ SOCIAL_SVG = {
 
 def footer():
     return f"""
-<div class="seams seams--dark" style="background-color: var(--pit);"></div>
 <footer class="foot">
   <div class="wrap">
     <div class="foot-grid">
@@ -235,7 +251,7 @@ def footer():
       </div>
       <div>
         <h4>Services</h4>
-        <ul>{"".join(f'<li><a href="{nw(h)}">{esc(t)}</a></li>' for h, t, _, _ in SERVICES)}
+        <ul>{"".join(f'<li><a href="{nw(h)}">{esc(t)}</a></li>' for h, t, _, _, _ in SERVICES)}
         <li><a href="/new/services">All services</a></li></ul>
       </div>
       <div>
@@ -250,8 +266,8 @@ def footer():
       </div>
       <div>
         <h4>Get in touch</h4>
-        <a class="rail-phone" href="{PHONE_HREF}">{PHONE_DISPLAY}</a>
-        <p><a href="mailto:{EMAIL}">{EMAIL}</a></p>
+        <a class="phone-lockup" href="{PHONE_HREF}"><small>Call us any time</small>{PHONE_DISPLAY}</a>
+        <p style="margin-top:0.9rem;"><a href="mailto:{EMAIL}">{EMAIL}</a></p>
         <p>{ADDRESS}</p>
       </div>
     </div>
@@ -277,19 +293,15 @@ def write(path, body):
 
 # ---------------------------------------------------------------- home ----
 def build_home():
-    door_panels = "".join('<div class="door-panel"></div>' for _ in range(5))
-    svc_rows = "".join(f"""
-    <div class="svc-row">
-      <div class="svc-copy rise">
-        <p class="kicker">Garage door services</p>
-        <h3>{esc(t)}</h3>
-        <p>{esc(blurb)}</p>
-        <a class="svc-link" href="{nw(h)}">See details <span aria-hidden="true">→</span></a>
-      </div>
-      <a class="svc-shot-link" href="{nw(h)}" tabindex="-1" aria-hidden="true">
-        <div class="svc-shot clipy">{img_tag(img, t)}</div>
-      </a>
-    </div>""" for h, t, img, blurb in SERVICES)
+    cards = "".join(f"""
+      <a class="card rise" href="{nw(h)}">
+        <div class="card-shot">{img_tag(img, t, sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 25vw")}<span class="card-tag">{esc(tag)}</span></div>
+        <div class="card-body">
+          <h3>{esc(t)}</h3>
+          <p>{esc(blurb)}</p>
+          <span class="card-cta">See details <span aria-hidden="true">→</span></span>
+        </div>
+      </a>""" for h, t, img, blurb, tag in SERVICES)
 
     body = head("TML Garage Door Services | The Woodlands, Conroe, Spring, Houston TX | Garage Door Repair, Installation, and Service",
                 CONTENT["/"]["meta"].get("description", "Garage door repair, installation, and service across the greater Houston area."))
@@ -297,119 +309,138 @@ def build_home():
     body += f"""
 <main id="main">
 <section class="hero">
-  <div class="hero-media">
-    <video autoplay muted loop playsinline preload="metadata" poster="{HERO_POSTER}">
-      <source src="{HERO_MP4}" type="video/mp4">
-    </video>
-  </div>
-  <div class="wrap hero-in">
-    <p class="kicker hfade">The Woodlands · Conroe · Spring · Greater Houston</p>
-    <h1><span class="hline"><span>Garage door</span></span><span class="hline"><span>repair &amp; installation</span></span></h1>
-    <p class="hero-sub hfade hfade-1">Broken spring, dead opener, or a brand-new door — TML Garage Door Services is your local, family-owned crew. Same-day service, honest pricing.</p>
-    <a class="hero-phone hfade hfade-2" href="{PHONE_HREF}">{PHONE_DISPLAY}</a>
-    <div class="hero-ctas hfade hfade-3">
-      <a class="btn btn-vis" href="{PHONE_HREF}">Call now — we answer</a>
-      <a class="btn btn-ghost-light" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book online</a>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow rise">Same-day &amp; emergency service</p>
+      <h1 class="rise rise-d1">Garage door repair &amp; installation, done right</h1>
+      <p class="hero-sub rise rise-d1">Broken spring, dead opener, or a brand-new door — TML Garage Door Services is your local, family-owned crew serving The Woodlands, Conroe, Spring, and greater Houston.</p>
+      <div class="hero-ctas rise rise-d2">
+        <a class="btn btn-olive" href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a>
+        <a class="btn btn-ghost" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book online</a>
+      </div>
+      <ul class="hero-checks rise rise-d2">
+        <li>Same-day service</li>
+        <li>No weekend surcharge</li>
+        <li>Insured technicians</li>
+      </ul>
+      <ul class="triage rise rise-d2">
+        <li class="triage-label">What's going on with your door?</li>
+        {"".join(f'<li><a href="{nw(h)}">{esc(t)}</a></li>' for t, h in TRIAGE)}
+      </ul>
     </div>
-    <ul class="triage hfade hfade-4">
-      <li class="triage-label">What's going on with your door?</li>
-      {"".join(f'<li><a href="{nw(h)}">{esc(t)}</a></li>' for t, h in TRIAGE)}
-    </ul>
-  </div>
-  <div class="door" id="door" aria-hidden="true">
-    {door_panels}
-    <div class="door-brand"><img src="{LOGO_W}" alt=""></div>
-    <p class="door-lift">Opening up</p>
+    <div class="hero-shot rise rise-d1">
+      {img_tag(HERO_IMG, "A modern garage door installed by TML Garage Services", lazy=False)}
+      <span class="hero-badge">The Woodlands · Conroe · Spring · Houston</span>
+    </div>
   </div>
 </section>
-{ticker()}
 
-<section class="sec" id="services">
+<section class="sec">
+  <div class="wrap stats">
+    <div class="stat rise"><b>Same day</b><span>On-time service, even weekends</span></div>
+    <div class="stat rise rise-d1"><b>$69</b><span>Complete garage door tune-up</span></div>
+    <div class="stat rise rise-d1"><b>2019</b><span>Angi Super Service Award</span></div>
+    <div class="stat rise rise-d2"><b>100%</b><span>Satisfaction guaranteed</span></div>
+  </div>
+</section>
+
+<section class="sec-pad" id="services">
   <div class="wrap">
-    <div class="sec-head rise">
-      <p class="kicker">What we do</p>
-      <h2>Our garage door services</h2>
+    <div class="sec-head sec-head--center rise">
+      <p class="eyebrow">Our services</p>
+      <h2>Garage door services we offer</h2>
       <p>Residential and commercial technicians proficient in repairing all garage door and opener brands — and installing new ones.</p>
     </div>
-    {svc_rows}
-  </div>
-</section>
-
-<section class="sec sec-pit monument-sec">
-  <div class="wrap monument rise">
-    <p class="kicker">Fastest way to get it fixed</p>
-    <p class="monument-q">Broken door?</p>
-    <a class="monument-a" href="{PHONE_HREF}"><u>{PHONE_DISPLAY}</u></a>
-    <p class="monument-note">Company owner or live in-house customer service rep on the line for every call.</p>
-  </div>
-</section>
-
-<section class="sec sec-forest">
-  <div class="wrap promise-grid">
-    <div class="rise">
-      <p class="kicker">The TML standard</p>
-      <h2>What you can expect from TML</h2>
-      <p style="color: var(--on-dark-muted); font-size: var(--step-1); margin: 1rem 0 0; max-width: 40ch;">We are a trustworthy, affordable, and always accessible garage door and driveway entry gate service company.</p>
-      <div style="margin-top: 1.8rem;"><a class="btn btn-vis" href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a></div>
-    </div>
-    <ul class="checks rise rise-d1">
-      <li>Same-day, on-time service</li>
-      <li>Emergency services</li>
-      <li>No extra charge for weekend appointments</li>
-      <li>The owner or a live rep answers every call</li>
-      <li>Friendly, professional service from first call to job done</li>
-      <li>Quality workmanship on every job</li>
-      <li>Well-trained and insured technicians</li>
-      <li>100% satisfaction guaranteed</li>
-    </ul>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="wrap split">
-    <div class="split-shot clipy">{img_tag(TEAM_IMG, "TML technician installing a garage door opener")}</div>
-    <div class="split-copy rise rise-d1">
-      <p class="kicker">Family owned</p>
-      <h2 style="font-size: var(--step-3);">A local family company, not a call center</h2>
-      <p class="lead">At TML Garage Door Services, we are committed to delivering exceptional service and quality workmanship for all your garage door and gate needs.</p>
-      <p>Expert technicians trained to handle any garage door or gate issue. Transparent, upfront pricing with no hidden fees. Same-day service, because a stuck door can't wait. When you choose TML, you're choosing a company that values excellence, professionalism, and integrity.</p>
-      <p style="margin-top: 1.5rem;"><a class="btn btn-ink" href="/new/about">More about us</a></p>
-    </div>
-  </div>
-</section>
-
-<section class="sec sec-steel">
-  <div class="wrap">
-    <div class="sec-head rise">
-      <p class="kicker">Openers</p>
-      <h2>Every major brand</h2>
-      <p>Factory-trusted parts and technicians who know each system inside out.</p>
-    </div>
-    <ul class="brand-index rise rise-d1">
-      {"".join(f'''<li><a href="{nw(h)}"><b>{esc(t)}</b><span>Opener repair &amp; installation</span><span class="go" aria-hidden="true">→</span></a></li>''' for h, t in BRANDS)}
-    </ul>
-  </div>
-</section>
-
-<section class="sec sec-forest">
-  <div class="wrap">
-    <div class="sec-head rise">
-      <p class="kicker">Where we work</p>
-      <h2>Serving the greater Houston area</h2>
-      <p>Local to The Woodlands, Conroe, and Spring — and on the road across the metro every day.</p>
-    </div>
-    <ul class="areas rise rise-d1">
-      <li><a class="is-page" href="/new/service-areas/the-woodlands-tx">The Woodlands, TX</a></li>
-      {"".join(f"<li><span>{a}, TX</span></li>" for a in AREAS[1:])}
-    </ul>
+    <div class="cards">{cards}</div>
   </div>
 </section>
 
 <section class="sec">
   <div class="wrap">
-    <div class="sec-head rise">
-      <p class="kicker">Proof</p>
-      <h2>Rated where it counts</h2>
+    <div class="banner rise">
+      {img_tag(BANNER_IMG, "", sizes="100vw")}
+      <div class="banner-in">
+        <h2>Broken door? We're local and we answer.</h2>
+        <p>Company owner or live in-house customer service rep on the line for every call.</p>
+        <a class="phone-lockup" href="{PHONE_HREF}"><small>Call now</small>{PHONE_DISPLAY}</a>
+        <div style="margin-top: 1.6rem; display: flex; gap: 0.7rem; flex-wrap: wrap;">
+          <a class="btn btn-white" href="{PHONE_HREF}">Call now</a>
+          <a class="btn btn-ghost-dark" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book online</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-pad">
+  <div class="wrap">
+    <div class="why">
+      <div class="why-card rise">
+        <span class="icon">{ICONS["shield"]}</span>
+        <h4>Insured technicians</h4>
+        <p>Well-trained and insured technicians, with quality workmanship on every job.</p>
+      </div>
+      <div class="why-mid">
+        <div class="rise rise-d1" style="text-align:center; padding: 0.5rem 0 1rem;">
+          <p class="eyebrow">Why choose TML</p>
+          <h2 style="font-size: var(--step-3);">What you can expect from TML</h2>
+          <p style="color: var(--ink-2); margin: 0.9rem auto 0; max-width: 38ch;">We are a trustworthy, affordable, and always accessible garage door and driveway entry gate service company.</p>
+        </div>
+        <div class="why-card rise rise-d1">
+          <ul class="dots" style="margin-top:0;">
+            <li>Same-day, on-time service</li>
+            <li>Emergency services</li>
+            <li>No extra charge for weekend appointments</li>
+            <li>Friendly, professional service from first call to job done</li>
+            <li>100% satisfaction guaranteed</li>
+          </ul>
+        </div>
+      </div>
+      <div style="display:grid; gap: var(--gutter); align-content: start;">
+        <div class="why-card rise rise-d2">
+          <span class="icon">{ICONS["phone"]}</span>
+          <h4>A real person answers</h4>
+          <p>The company owner or a live in-house rep is on the line for every call.</p>
+        </div>
+        <div class="why-photo rise rise-d2">{img_tag(TEAM_IMG, "TML technician installing a garage door opener")}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap panel">
+    <div class="sec-head rise" style="margin-bottom: 1.6rem;">
+      <p class="eyebrow">Openers</p>
+      <h2 style="font-size: var(--step-3);">Every major opener brand</h2>
+    </div>
+    <div class="minis">
+      {"".join(f'''<a class="mini rise" href="{nw(h)}"><span class="icon">{ICONS["bolt"]}</span><span><b>{esc(t)}</b><span>Opener repair &amp; installation</span></span></a>''' for h, t in BRANDS)}
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap panel" style="background: var(--cream-2);">
+    <div class="split-2">
+      <div class="rise">
+        <p class="eyebrow">Where we work</p>
+        <h2 style="font-size: var(--step-3);">Serving the greater Houston area</h2>
+        <p style="color: var(--ink-2); margin: 0.9rem 0 0; max-width: 42ch;">Local to The Woodlands, Conroe, and Spring — and on the road across the metro every day.</p>
+      </div>
+      <ul class="chips rise rise-d1">
+        <li><a class="is-page" href="/new/service-areas/the-woodlands-tx">The Woodlands, TX</a></li>
+        {"".join(f"<li><span>{a}, TX</span></li>" for a in AREAS[1:])}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head rise" style="margin-bottom: 1.6rem;">
+      <p class="eyebrow">Proof</p>
+      <h2 style="font-size: var(--step-3);">Rated where it counts</h2>
     </div>
     <div class="badges rise rise-d1">
       {"".join(f'<figure>{img_tag(b, alt)}</figure>' for b, alt in BADGES)}
@@ -417,7 +448,7 @@ def build_home():
     </div>
   </div>
 </section>
-{cta_band()}
+{cta_close()}
 </main>
 """
     body += footer()
@@ -452,7 +483,6 @@ def clean_blocks(page):
     return out
 
 def fold_faq(blocks):
-    """Group h3/h4+p runs after a 'Frequently asked questions' h2 into one faq block."""
     out, i = [], 0
     while i < len(blocks):
         b = blocks[i]
@@ -500,9 +530,9 @@ def render_blocks(blocks):
                 for q, ans in b["items"])
             out.append(f'<div class="faq">{qs}</div>')
         elif b["t"] in ("h1", "h2"):
-            out.append(f"<h2>{links(b['x'])}</h2>")
+            out.append(f"<h2>{links(sentence(b['x']))}</h2>")
         elif b["t"] in ("h3", "h4", "h5"):
-            out.append(f"<h3>{links(b['x'])}</h3>")
+            out.append(f"<h3>{links(sentence(b['x']))}</h3>")
         elif b["t"] == "blockquote":
             out.append(f"<blockquote>{links(b['x'])}</blockquote>")
         else:
@@ -525,11 +555,11 @@ def title_of(path, page):
 RAIL = f"""
 <aside class="rail">
   <div class="rail-card">
-    <p class="kicker">Need it fixed today?</p>
-    <a class="rail-phone" href="{PHONE_HREF}">{PHONE_DISPLAY}</a>
+    <p class="eyebrow">Need it fixed today?</p>
+    <a class="phone-lockup" href="{PHONE_HREF}"><small>Call us — we answer</small>{PHONE_DISPLAY}</a>
     <p>Same-day service, upfront pricing, and the owner or a live rep on the line.</p>
-    <a class="btn btn-vis" href="{PHONE_HREF}">Call now</a>
-    <a class="btn btn-ghost-light" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book online</a>
+    <a class="btn btn-olive" href="{PHONE_HREF}">Call now</a>
+    <a class="btn btn-ghost" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Book online</a>
   </div>
 </aside>
 """
@@ -556,7 +586,6 @@ def build_article(path, crumb_label, crumb_href=None, rail=False, gallery=False,
         pruned.append(b)
     body_blocks = pruned
 
-    # pull the first image up into the hero
     hero_img = ""
     for i, b in enumerate(body_blocks):
         if b["t"] == "img":
@@ -573,27 +602,28 @@ def build_article(path, crumb_label, crumb_href=None, rail=False, gallery=False,
     crumb = f'<a href="{crumb_href}">{esc(crumb_label)}</a>' if crumb_href else esc(crumb_label)
     body = head(page["title"] or h1, page["meta"].get("description", lede[:150]))
     body += header()
-    shot = f'<div class="page-hero-shot">{img_tag(hero_img, "", lazy=False, sizes="50vw")}</div>' if hero_img else ""
+    shot = img_tag(hero_img, "", lazy=False, sizes="100vw") if hero_img else ""
     body += f"""
 <main id="main">
 <section class="page-hero">
-  <div class="wrap page-hero-grid">
-    <div class="page-hero-copy">
-      <p class="crumb"><a href="/new">Home</a> / {crumb}</p>
-      <h1>{esc(h1)}</h1>
-      {f'<p class="lede">{links(lede)}</p>' if lede else ''}
+  <div class="wrap">
+    <div class="page-hero-panel">
+      {shot}
+      <div class="page-hero-in">
+        <p class="crumb"><a href="/new">Home</a> / {crumb}</p>
+        <h1>{esc(sentence(h1))}</h1>
+        {f'<p class="lede">{links(lede)}</p>' if lede else ''}
+      </div>
     </div>
-    {shot}
   </div>
 </section>
-<div class="seams"></div>
 <div class="wrap page-body{'' if rail else ' page-body--solo'}">
-  <article class="article{'' if rail else ' wrap-narrow-inner'}">
+  <article class="article">
     {art}
   </article>
   {RAIL if rail else ''}
 </div>
-{cta_band()}
+{cta_close()}
 </main>
 """
     body += footer()
@@ -602,45 +632,45 @@ def build_article(path, crumb_label, crumb_href=None, rail=False, gallery=False,
 # ------------------------------------------------------- services hub ----
 def build_services_hub():
     page = CONTENT["/services"]
-    svc_rows = "".join(f"""
-    <div class="svc-row">
-      <div class="svc-copy rise">
-        <p class="kicker">Garage door services</p>
-        <h3>{esc(t)}</h3>
-        <p>{esc(blurb)}</p>
-        <a class="svc-link" href="{nw(h)}">See details <span aria-hidden="true">→</span></a>
-      </div>
-      <a class="svc-shot-link" href="{nw(h)}" tabindex="-1" aria-hidden="true">
-        <div class="svc-shot clipy">{img_tag(img, t)}</div>
-      </a>
-    </div>""" for h, t, img, blurb in SERVICES)
+    cards = "".join(f"""
+      <a class="card rise" href="{nw(h)}">
+        <div class="card-shot">{img_tag(img, t, sizes="(max-width: 640px) 100vw, 50vw")}<span class="card-tag">{esc(tag)}</span></div>
+        <div class="card-body">
+          <h3>{esc(t)}</h3>
+          <p>{esc(blurb)}</p>
+          <span class="card-cta">See details <span aria-hidden="true">→</span></span>
+        </div>
+      </a>""" for h, t, img, blurb, tag in SERVICES)
     body = head(page["title"], page["meta"].get("description", "Garage door services in Conroe, TX and the greater Houston area."))
     body += header()
     body += f"""
 <main id="main">
 <section class="page-hero">
-  <div class="wrap page-hero-grid">
-    <div class="page-hero-copy">
-      <p class="crumb"><a href="/new">Home</a> / What we do</p>
-      <h1>Our services</h1>
-      <p class="lede">Repair, replacement, new installation, and maintenance — residential and commercial, all brands.</p>
-    </div>
-  </div>
-</section>
-<div class="seams"></div>
-<section class="sec" style="padding-top: var(--space-sm);">
   <div class="wrap">
-    {svc_rows}
-    <div class="sec-head rise" style="margin-top: var(--space-sm); margin-bottom: 1.5rem;">
-      <p class="kicker">Openers</p>
-      <h2 style="font-size: var(--step-3);">Brands we service</h2>
+    <div class="page-hero-panel">
+      <div class="page-hero-in">
+        <p class="crumb"><a href="/new">Home</a> / What we do</p>
+        <h1>Our services</h1>
+        <p class="lede">Repair, replacement, new installation, and maintenance — residential and commercial, all brands.</p>
+      </div>
     </div>
-    <ul class="brand-index rise">
-      {"".join(f'''<li><a href="{nw(h)}"><b>{esc(t)}</b><span>Opener repair &amp; installation</span><span class="go" aria-hidden="true">→</span></a></li>''' for h, t in BRANDS)}
-    </ul>
   </div>
 </section>
-{cta_band()}
+<section class="sec">
+  <div class="wrap">
+    <div class="cards">{cards}</div>
+    <div class="panel" style="margin-top: var(--space-sm);">
+      <div class="sec-head rise" style="margin-bottom: 1.4rem;">
+        <p class="eyebrow">Openers</p>
+        <h2 style="font-size: var(--step-3);">Brands we service</h2>
+      </div>
+      <div class="minis">
+        {"".join(f'''<a class="mini rise" href="{nw(h)}"><span class="icon">{ICONS["bolt"]}</span><span><b>{esc(t)}</b><span>Opener repair &amp; installation</span></span></a>''' for h, t in BRANDS)}
+      </div>
+    </div>
+  </div>
+</section>
+{cta_close()}
 </main>
 """
     body += footer()
@@ -658,7 +688,7 @@ FORM = f"""
     <label>Email<input name="email" type="email" autocomplete="email"></label>
   </div>
   <label>What's going on with your door?<textarea name="msg" rows="4"></textarea></label>
-  <button class="btn btn-ink" type="submit">Send message</button>
+  <button class="btn btn-olive" type="submit">Send message</button>
   <p class="form-note">Sends via your email app to {EMAIL}. In a hurry? <a href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a>.</p>
 </form>
 <script>
@@ -679,37 +709,38 @@ def build_contact():
     body += f"""
 <main id="main">
 <section class="page-hero">
-  <div class="wrap page-hero-grid">
-    <div class="page-hero-copy">
-      <p class="crumb"><a href="/new">Home</a> / Contact</p>
-      <h1>Talk to a real person</h1>
-      <p class="lede">Need fast, reliable garage door service? Whether it's a repair, a new installation, or a question — the owner or a live rep answers every call.</p>
+  <div class="wrap">
+    <div class="page-hero-panel">
+      <div class="page-hero-in">
+        <p class="crumb"><a href="/new">Home</a> / Contact</p>
+        <h1>Talk to a real person</h1>
+        <p class="lede">Need fast, reliable garage door service? Whether it's a repair, a new installation, or a question — the owner or a live rep answers every call.</p>
+      </div>
     </div>
   </div>
 </section>
-<div class="seams"></div>
-<section class="sec" style="padding-top: var(--space-sm);">
+<section class="sec">
   <div class="wrap contact-grid">
     <div class="rise">
       <div class="contact-card contact-card--dark">
-        <h3>Fastest: call us</h3>
-        <a class="contact-phone" href="{PHONE_HREF}">{PHONE_DISPLAY}</a>
-        <p>Same day service · Houston &amp; surrounding areas · Safety inspection included</p>
-        <p style="margin-top:1rem;"><strong style="color:#fff;">Garage door tune-up — just $69.</strong> Financing available.</p>
+        <p class="eyebrow" style="background: oklch(100% 0 0 / 0.1); border-color: transparent; color: var(--on-dark);">Fastest: call us</p>
+        <a class="phone-lockup" href="{PHONE_HREF}"><small>Same-day service available</small>{PHONE_DISPLAY}</a>
+        <p style="margin-top:0.8rem;">Same day service · Houston &amp; surrounding areas · Safety inspection included</p>
+        <p style="margin-top:0.8rem;"><strong style="color:#fff;">Garage door tune-up — just $69.</strong> Financing available.</p>
       </div>
       <div class="contact-card" style="margin-top: var(--gutter);">
         <h3>Prefer to book online?</h3>
-        <p><a class="btn btn-ink" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Pick a time on our calendar</a></p>
+        <p><a class="btn btn-olive" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener" style="margin-top:0.6rem;">Pick a time on our calendar</a></p>
         <p style="margin-top:1rem;">{ADDRESS}<br><a href="mailto:{EMAIL}">{EMAIL}</a></p>
       </div>
     </div>
-    <div class="rise rise-d1">
-      <h2 style="font-size: var(--step-3); margin-bottom: 1.3rem;">Send us a message</h2>
+    <div class="contact-card rise rise-d1">
+      <h3 style="margin-bottom: 1.1rem;">Send us a message</h3>
       {FORM}
     </div>
   </div>
 </section>
-{cta_band("Same-day service. Honest pricing.")}
+{cta_close("Same-day service. Honest pricing.")}
 </main>
 """
     body += footer()
@@ -722,22 +753,23 @@ def build_schedule():
     body += f"""
 <main id="main">
 <section class="page-hero">
-  <div class="wrap page-hero-grid">
-    <div class="page-hero-copy">
-      <p class="crumb"><a href="/new">Home</a> / Schedule service</p>
-      <h1>Schedule your service</h1>
-      <p class="lede">Broken spring replacement, garage door repair, opener service, a new installation, or a $69 tune-up — pick a time and our team will confirm your appointment.</p>
+  <div class="wrap">
+    <div class="page-hero-panel">
+      <div class="page-hero-in">
+        <p class="crumb"><a href="/new">Home</a> / Schedule service</p>
+        <h1>Schedule your service</h1>
+        <p class="lede">Broken spring replacement, garage door repair, opener service, a new installation, or a $69 tune-up — pick a time and our team will confirm your appointment.</p>
+      </div>
     </div>
   </div>
 </section>
-<div class="seams"></div>
-<section class="sec" style="padding-top: var(--space-sm);">
+<section class="sec">
   <div class="wrap contact-grid">
     <div class="rise">
       <div class="contact-card">
         <h3>Book online now</h3>
         <p>Choose a slot that works for you — takes under a minute.</p>
-        <p style="margin-top:0.9rem;"><a class="btn btn-vis" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Open the booking calendar</a></p>
+        <p style="margin-top:0.9rem;"><a class="btn btn-olive" href="{BOOK}" data-track="book_click" target="_blank" rel="noopener">Open the booking calendar</a></p>
       </div>
       <div class="contact-card" style="margin-top: var(--gutter);">
         <h3>Financing available!</h3>
@@ -745,16 +777,14 @@ def build_schedule():
         <p style="margin-top:0.9rem;"><strong>Fast service. Honest pricing. Guaranteed satisfaction.</strong></p>
       </div>
     </div>
-    <div class="rise rise-d1">
-      <div class="contact-card contact-card--dark">
-        <h3>Rather just call?</h3>
-        <a class="contact-phone" href="{PHONE_HREF}">{PHONE_DISPLAY}</a>
-        <p>Same-day service, upfront pricing, and quality workmanship you can trust. Complete the booking or give us a call, and our team will contact you shortly to confirm your appointment.</p>
-      </div>
+    <div class="contact-card contact-card--dark rise rise-d1">
+      <p class="eyebrow" style="background: oklch(100% 0 0 / 0.1); border-color: transparent; color: var(--on-dark);">Rather just call?</p>
+      <a class="phone-lockup" href="{PHONE_HREF}"><small>We answer</small>{PHONE_DISPLAY}</a>
+      <p style="margin-top:0.8rem;">Same-day service, upfront pricing, and quality workmanship you can trust. Complete the booking or give us a call, and our team will contact you shortly to confirm your appointment.</p>
     </div>
   </div>
 </section>
-{cta_band("Fast service. Honest pricing.")}
+{cta_close("Fast service. Honest pricing.")}
 </main>
 """
     body += footer()
@@ -769,10 +799,10 @@ def build_404():
 <section class="lost">
   <div class="wrap">
     <p class="big">404</p>
-    <h1 style="font-size: var(--step-3); margin-top: 1.2rem;">This door won't open</h1>
-    <p style="color: var(--ink-2); max-width: 50ch;">The page you're looking for doesn't exist — but a real person is one tap away.</p>
-    <div class="cta-actions" style="margin-top: 1.5rem;">
-      <a class="btn btn-vis" href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a>
+    <h1 style="font-size: var(--step-3); margin-top: 0.6rem;">This page rolled away</h1>
+    <p style="color: var(--ink-2); max-width: 50ch; margin: 0.8rem auto 1.6rem;">The page you're looking for doesn't exist — but a real person is one tap away.</p>
+    <div style="display:flex; gap:0.7rem; justify-content:center; flex-wrap:wrap;">
+      <a class="btn btn-olive" href="{PHONE_HREF}">Call {PHONE_DISPLAY}</a>
       <a class="btn btn-ghost" href="/new">Back to home</a>
     </div>
   </div>

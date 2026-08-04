@@ -1,34 +1,8 @@
-/* TML redesign v2 interactions: door choreography, menu, reveals, tracking. */
+/* TML redesign v3 interactions: menu, quiet reveals, tracking. */
 (function () {
   "use strict";
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  /* THE DOOR: roll up on load, then reveal the hero lines. Runs once per
-     session so back/forward navigation doesn't replay it. */
-  var door = document.getElementById("door");
-  var hero = document.querySelector(".hero");
-  var seen = false;
-  try { seen = sessionStorage.getItem("tml-door") === "1"; } catch (e) {}
-  if (door && (reduce || seen)) {
-    document.documentElement.classList.add("no-door");
-    if (hero) hero.classList.add("on");
-  } else if (door && hero) {
-    var opened = false;
-    var open = function () {
-      if (opened) return;
-      opened = true;
-      requestAnimationFrame(function () { door.classList.add("open"); });
-      setTimeout(function () { hero.classList.add("on"); }, 900);
-      setTimeout(function () { door.remove(); }, 2000);
-      try { sessionStorage.setItem("tml-door", "1"); } catch (e) {}
-    };
-    if (document.readyState === "complete") setTimeout(open, 150);
-    else window.addEventListener("load", function () { setTimeout(open, 150); });
-    setTimeout(open, 1800); /* never hold the page hostage */
-  } else if (hero) {
-    hero.classList.add("on");
-  }
 
   /* mobile menu */
   var menu = document.getElementById("menu");
@@ -56,7 +30,7 @@
     });
   });
 
-  /* scroll reveals: enhance-only; content is fully visible without JS */
+  /* scroll reveals: enhance-only; content fully visible without JS */
   if (!reduce && "IntersectionObserver" in window) {
     document.documentElement.classList.add("js-motion");
     var io = new IntersectionObserver(function (entries) {
@@ -64,9 +38,9 @@
         if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
-    document.querySelectorAll(".rise, .clipy").forEach(function (el) { io.observe(el); });
+    document.querySelectorAll(".rise").forEach(function (el) { io.observe(el); });
     setTimeout(function () {
-      document.querySelectorAll(".rise:not(.in), .clipy:not(.in)").forEach(function (el) { el.classList.add("in"); });
+      document.querySelectorAll(".rise:not(.in)").forEach(function (el) { el.classList.add("in"); });
     }, 3000);
   }
 
