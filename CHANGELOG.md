@@ -10,6 +10,24 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Search-engine address problems fixed sitewide
+
+- **Every page now tells Google its correct address.** None of the 36 pages
+  had a "canonical" tag — the line that tells search engines which web
+  address is the official one for a page. All 36 have one now.
+- **Removed the last references to the old misspelled domain.** The About
+  page was telling Facebook, LinkedIn and search engines that it lived at
+  "tmlhomeimprovment.com/about-us" (an address that doesn't exist), and the
+  Services page did the same. Both now point at tmlgarageservices.com.
+
+> **Action needed on the live website (we cannot change it from here):**
+> the current Services page at tmlgarageservices.com contains a setting
+> that tells Google **not to list it at all** ("noindex"), left over from
+> when the site was built. That page cannot appear in search results until
+> someone removes that setting in Webflow. The same page also points to the
+> misspelled old domain. These are switches inside the Webflow editor —
+> whoever manages that account needs to flip them.
+
 ## 2026-08-14 — Services page rebuilt around garage doors
 
 - **The Services page was still selling home remodeling.** Its description
