@@ -10,6 +10,15 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Page structure for search engines
+
+- **Every page now has exactly one main headline.** Service pages had 4–5
+  competing "main headlines" (H1s), the homepage had 3, and all eight blog
+  posts had none at all (their titles were plain styled boxes). 17 extra
+  headings were demoted to sub-headings and the 8 blog titles were promoted
+  to real headlines. Nothing changed visually — this is how Google and
+  screen readers read the page's outline.
+
 ## 2026-08-14 — Search listings for the brand pages
 
 - **The four opener-brand pages (LiftMaster, Genie, Chamberlain, Craftsman)
