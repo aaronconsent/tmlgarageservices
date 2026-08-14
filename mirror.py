@@ -126,8 +126,6 @@ def rewrite(html: str) -> str:
     html = html.replace(f'href="{BASE}/', 'href="/').replace(f'href="{BASE}"', 'href="/"')
     # the live site has two internal links with a stray space in the path
     html = re.sub(r'href="(/[^"]*?) +([^" ]*)"', r'href="\1\2"', html)
-    # design-preview switcher (see site/switch.js + inject_widget.py)
-    html = html.replace("</body>", '<script src="/switch.js" defer></script></body>', 1)
     return html
 
 for path, html in pages.items():
