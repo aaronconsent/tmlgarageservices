@@ -10,6 +10,20 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Reviews restyled as a credibility showcase
+
+- **The review sections are now a proper selling moment.** A large "5.0"
+  score with gold stars, the Google logo, "213 five-star Google reviews,"
+  and a green "Read them all on Google" button sit alongside the reviews
+  themselves — presented as clean white cards with the reviewer's initial,
+  name, and date.
+- **On phones the reviews are a swipeable carousel** that advances on its
+  own every 2 seconds, with progress dots underneath. Swiping pauses the
+  auto-advance for a few seconds so no one loses their place mid-read, and
+  visitors who prefer reduced motion get a static, swipeable version.
+- **On desktop** the score sits in a column on the left with all six
+  reviews in a card grid beside it.
+
 ## 2026-08-14 — Homepage: texting button clarified and centered
 
 - The blue button below the contact form said "CHAT WITH US NOW" but
