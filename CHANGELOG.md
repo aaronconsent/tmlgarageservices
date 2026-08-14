@@ -10,6 +10,26 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Service pages no longer sit against the left edge
+
+The service pages were built as two columns: the article on the left and a
+sidebar on the right. The sidebar holds three links and is about 150px tall,
+but the pages are now several thousand pixels long — so past the first screen
+the text was jammed against the left edge with a permanent empty band roughly a
+third of the page wide running all the way down the right.
+
+- **The article is now a single centred column** with equal margins on both
+  sides, so the page reads as balanced at every point on the way down instead of
+  pushed to one side.
+- **The "Our Services" links moved to the end of the article** as a row of
+  cards. They still link to the other services, which helps both visitors and
+  search engines, but no longer cost a third of the page width for the entire
+  length of the page to do it.
+- Checked at desktop and phone widths: nothing overflows and the link row drops
+  to a single column on a phone.
+
+---
+
 ## 2026-08-14 — Duplicate "Need this fixed today?" blocks removed
 
 Each service page was ending with the same green call-to-action band printed
