@@ -10,6 +10,32 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — The four main service pages rebuilt
+
+Spring repair, opener repair/installation, new door installation, and
+commercial doors now follow one proven layout. **Every word of the original
+service content was kept** — the symptom lists, what's-included lists, and
+door/opener types are all still there. What's new around them:
+
+- **A banner that matches what people searched for**, with the phone number,
+  the 5.0/213 Google rating and same-day promise visible before any
+  scrolling — on a phone as well as a computer.
+- **Straight answers up top.** Each page opens with the three questions
+  customers actually ask ("What causes a garage door spring to break?",
+  "Should I repair or replace my opener?") answered in a short paragraph
+  each. This is also the format Google and AI assistants quote.
+- **A "what will it cost?" block** explaining that the technician gives the
+  full price before any work starts. *When the owner gives us his
+  starting prices, they drop straight into this block.*
+- **A plain-spoken "how we keep this straightforward" panel** — you approve
+  the price first, a real person answers, our own technicians, weekends
+  cost the same.
+- **Reviews, opener brands, service areas, a fuller FAQ, and a closing
+  call band** on every page.
+- **Fixed unfinished text in the original site:** two pages still said
+  "[Your Company Name]" where the business name belonged — visible to
+  customers on the live site today.
+
 ## 2026-08-14 — Search-engine address problems fixed sitewide
 
 - **Every page now tells Google its correct address.** None of the 36 pages
