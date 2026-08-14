@@ -10,6 +10,12 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Financing message made readable
+
+- **"Renovate Now. Pay Later." was light gray on a green background** on the
+  contact and schedule pages — nearly invisible. Financing is a real selling
+  point on bigger jobs; the line is now white and clearly readable.
+
 ## 2026-08-14 — A share card that sells
 
 - **Sharing the site used to show a stock template avatar** (or no image at
