@@ -62,10 +62,14 @@ CSS = """<style id="tmlnav2-css">
  color:#1f2418;text-decoration:none;line-height:1.25;transition:background .12s ease,color .12s ease;}
 .tmlnav2-panel a:hover{background:#f2f5eb;color:#3f5a22;}
 .tmlnav2-panel a:focus-visible{outline:2px solid #587735;outline-offset:-2px;}
-/* nav sits beside the logo instead of floating in the middle of the bar */
-.navbar-wrapper .nav-menu{flex:1 1 auto;display:flex!important;align-items:center;
- justify-content:space-between!important;gap:18px;}
-.navbar-wrapper .nav-inner{margin-right:auto;justify-content:flex-start!important;}
+/* nav sits beside the logo instead of floating in the middle of the bar.
+   Desktop only — unscoped, this forced the collapsed mobile menu to render and
+   pushed the page wider than the phone viewport. */
+@media(min-width:992px){
+ .navbar-wrapper .nav-menu{flex:1 1 auto;display:flex!important;align-items:center;
+  justify-content:space-between!important;gap:18px;}
+ .navbar-wrapper .nav-inner{margin-right:auto;justify-content:flex-start!important;}
+}
 @media(prefers-reduced-motion:reduce){
  .tmlnav2-link,.tmlnav2-chev,.tmlnav2-panel a{transition:none;}
 }
@@ -78,7 +82,9 @@ CSS = """<style id="tmlnav2-css">
  .tmlnav2-toggle .tmlnav2-chev{margin-left:auto;}
  .tmlnav2-panel{position:static;border:0;box-shadow:none;padding:0 0 6px 25px;min-width:0;background:none;}
  .tmlnav2-panel a{padding:10px 0;font-size:15.5px;}
- .navbar-wrapper .nav-menu{display:block!important;}
+ /* only when the hamburger is open: forcing this visible at all times left the
+    closed menu rendered off-canvas, which widened the page on phones */
+ .tmlnav-open .navbar-wrapper .nav-menu{display:block!important;}
 }
 </style>"""
 

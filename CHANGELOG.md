@@ -10,6 +10,30 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — "Why Choose TML" is now its own section, and the photo gallery no longer needs Webflow
+
+**Why Choose TML Garage Door Services.** On the home page and the About page this
+was the left-hand column of a two-column block, sharing the row with the FAQ
+list. Seven reasons to hire you were squeezed into a narrow column of small text
+running down the side of the page, reading like a caption to the FAQ rather than
+an argument of its own. It is now a **full-width section of its own, sitting
+above the FAQ**, with each reason as a headed point with a check against it,
+three across on a desktop and stacking on a phone. Same words, same black
+section, same phone and Explore Services buttons.
+
+**The "Some of our work" photo gallery** on five pages was a Webflow slider.
+It has been rebuilt using the browser's own scrolling, which means swiping on a
+phone now feels like every other gallery on your phone rather than a website
+imitation of one. Clicking a photo still opens it full-size. Arrows, position
+dots and the photos themselves are unchanged. This removes one of the four
+things still tying the site to the old Webflow code.
+
+Also fixed along the way: on phones, the collapsed menu was being rendered
+off-screen to the right, which let the page slide sideways slightly. It no
+longer does.
+
+---
+
 ## 2026-08-14 — Fonts now served from your own site
 
 Every page was loading a script from Google that then went and fetched six
