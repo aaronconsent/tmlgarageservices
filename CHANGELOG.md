@@ -10,6 +10,13 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Homepage: texting button clarified and centered
+
+- The blue button below the contact form said "CHAT WITH US NOW" but
+  actually opens a text message. It now says **"💬 Send Us a Text"**, is
+  centered on the page, and the texting link was normalized so it works
+  reliably on both iPhone and Android.
+
 ## 2026-08-14 — Homepage: Contact Us upgraded to a button
 
 - In the green "Garage Door Repair &amp; Installation Services" section,
