@@ -123,6 +123,68 @@ function gtag_report_conversion(url) {
 .tb-final h2{margin:0;font-size:clamp(22px,3.4vw,30px);}
 .tb-final p{margin:6px 0 0;color:#cfd6c4;font-size:15.5px;}
 .tb-final .acts{display:grid;gap:10px;}
+/* ── native booking picker (prototype) ─────────────────────────── */
+.bk{padding:4px 6px 8px;}
+.bk-demo{margin:0 0 14px;background:#fff8e1;border:1px dashed #d9b23a;color:#6b5310;
+ border-radius:8px;padding:8px 12px;font-size:13px;font-weight:600;}
+.bk-step{margin-bottom:18px;}
+.bk-q{display:block;font-weight:800;font-size:15.5px;color:var(--ink);margin:0 0 9px;}
+.bk-chips{display:flex;flex-wrap:wrap;gap:8px;}
+.bk-chip{font:inherit;font-size:14.5px;font-weight:600;color:var(--ink);background:#fff;
+ border:1.5px solid var(--line);border-radius:999px;padding:10px 15px;cursor:pointer;
+ transition:background .14s ease,border-color .14s ease,color .14s ease,transform .12s ease;}
+.bk-chip:hover{border-color:var(--g);}
+.bk-chip:active{transform:scale(.97);}
+.bk-chip.on{background:var(--g);border-color:var(--g);color:#fff;}
+.bk-urgent[hidden],.bk-done[hidden],#bk-form[hidden]{display:none!important;}
+.bk-urgent{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;background:#fdeceb;
+ border:1px solid #f0b7b2;border-radius:10px;padding:11px 14px;margin:0 0 18px;font-size:14.5px;color:#8c2f27;}
+.bk-urgent a{color:#8c2f27;font-weight:800;text-decoration:underline;}
+.bk-days{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;margin:0 -2px 10px;scrollbar-width:none;}
+.bk-days::-webkit-scrollbar{display:none;}
+.bk-day{flex:0 0 auto;min-width:78px;font:inherit;background:#fff;border:1.5px solid var(--line);
+ border-radius:12px;padding:9px 8px;cursor:pointer;text-align:center;line-height:1.25;
+ transition:border-color .14s ease,background .14s ease,transform .12s ease;}
+.bk-day:hover{border-color:var(--g);}
+.bk-day:active{transform:scale(.97);}
+.bk-day span{display:block;font-size:12px;color:var(--mut);font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
+.bk-day b{display:block;font-size:17px;color:var(--ink);}
+.bk-day.on{background:var(--g);border-color:var(--g);}
+.bk-day.on span,.bk-day.on b{color:#fff;}
+.bk-windows{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.bk-win{font:inherit;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:11px 6px;
+ cursor:pointer;text-align:center;transition:border-color .14s ease,background .14s ease,transform .12s ease;}
+.bk-win:hover{border-color:var(--g);}
+.bk-win:active{transform:scale(.97);}
+.bk-win b{display:block;font-size:14.5px;color:var(--ink);}
+.bk-win span{display:block;font-size:12px;color:var(--mut);margin-top:2px;}
+.bk-win.on{background:var(--g);border-color:var(--g);}
+.bk-win.on b,.bk-win.on span{color:#fff;}
+.bk-fields{display:grid;gap:10px;}
+.bk-in{font:inherit;font-size:16px;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;
+ background:#fff;color:var(--ink);width:100%;}
+.bk-in:focus{outline:none;border-color:var(--g);box-shadow:0 0 0 3px rgba(88,119,53,.18);}
+.bk-in.bad{border-color:#c0392b;background:#fdf3f2;}
+.bk-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;}
+.bk-err{margin:0 0 10px;color:#c0392b;font-size:14px;font-weight:600;}
+.bk-submit{width:100%;margin-top:4px;}
+.bk-submit[disabled]{opacity:.65;cursor:progress;}
+.bk-done{padding:10px 6px 8px;text-align:center;}
+.bk-check{width:56px;height:56px;border-radius:50%;background:var(--g);color:#fff;font-size:30px;
+ display:grid;place-items:center;margin:6px auto 12px;}
+.bk-done h3{margin:0 0 6px;font-size:23px;color:var(--ink);}
+.bk-ref{margin:0 0 14px;color:var(--mut);font-size:14.5px;}
+.bk-ref b{color:var(--ink);letter-spacing:.06em;}
+.bk-summary{display:grid;gap:6px;text-align:left;background:#f6f8f1;border:1px solid var(--line);
+ border-radius:12px;padding:14px 16px;margin:0 0 14px;font-size:14.5px;color:var(--ink);}
+.bk-summary div{display:flex;justify-content:space-between;gap:14px;}
+.bk-summary span{color:var(--mut);}
+.bk-next{margin:0 0 14px;color:var(--mut);font-size:14.5px;line-height:1.55;}
+.bk-payload{text-align:left;margin:0 0 14px;}
+.bk-payload summary{cursor:pointer;font-size:13px;color:var(--mut);font-weight:600;}
+.bk-payload pre{background:#1f2418;color:#cfe0b8;border-radius:10px;padding:12px;overflow-x:auto;
+ font-size:12px;line-height:1.5;margin:8px 0 0;}
+@media(min-width:620px){.bk-fields{grid-template-columns:1fr 1fr;}.bk-in.wide{grid-column:1/-1;}}
 @media(max-width:600px){.tb-hero{padding:34px 0 32px;}.tb-hero-box{padding:18px 16px;}}
 @media(min-width:860px){
  .tb-grid{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);align-items:start;}
@@ -159,13 +221,64 @@ function gtag_report_conversion(url) {
         <p>Takes about a minute. You'll get a confirmation right away.</p>
       </div>
       <div class="tb-slot" id="tmlbook-slot">
-        <div class="tb-fallback">
-          <div class="row">
-            <a class="tb-btn p" href="https://calendar.app.google/juqN1UNcknf4KZ9v9" target="_blank" rel="noopener" data-book="calendar">📅 Pick a time now</a>
-            <a class="tb-btn s" href="tel:+18328878747" data-book="call">📞 Call (832) 887-8747</a>
+        <form class="bk" id="bk-form" novalidate>
+          <p class="bk-demo">Prototype — nothing is booked yet. This is the flow that will push to Workiz.</p>
+
+          <div class="bk-step">
+            <label class="bk-q">1. What's going on?</label>
+            <div class="bk-chips" id="bk-issues" role="radiogroup" aria-label="Problem type">
+              <button type="button" class="bk-chip" data-issue="Broken spring">Broken spring</button>
+              <button type="button" class="bk-chip" data-issue="Door won't open">Door won't open</button>
+              <button type="button" class="bk-chip" data-issue="Opener trouble">Opener trouble</button>
+              <button type="button" class="bk-chip" data-issue="Off track">Off track</button>
+              <button type="button" class="bk-chip" data-issue="New door quote">New door</button>
+              <button type="button" class="bk-chip" data-issue="Tune-up">Tune-up</button>
+              <button type="button" class="bk-chip" data-issue="Something else">Something else</button>
+            </div>
           </div>
-          <p class="tb-note">Prefer to text? <a href="sms:+18328878747" data-book="text">Send us a text</a> and we'll get you scheduled.
-          Broken spring or a door that won't open? Call — we keep same-day slots open for emergencies.</p>
+
+          <div class="bk-urgent" id="bk-urgent" hidden>
+            <b>Door stuck right now?</b> A call gets a technician moving faster than a form.
+            <a href="tel:+18328878747" data-book="call">Call (832) 887-8747 →</a>
+          </div>
+
+          <div class="bk-step">
+            <label class="bk-q">2. Which day works?</label>
+            <div class="bk-days" id="bk-days" role="radiogroup" aria-label="Day"></div>
+            <div class="bk-windows" id="bk-windows" role="radiogroup" aria-label="Arrival window">
+              <button type="button" class="bk-win" data-win="Morning" data-range="8:00–12:00"><b>Morning</b><span>8am – 12pm</span></button>
+              <button type="button" class="bk-win" data-win="Afternoon" data-range="12:00–16:00"><b>Afternoon</b><span>12pm – 4pm</span></button>
+              <button type="button" class="bk-win" data-win="Evening" data-range="16:00–19:00"><b>Evening</b><span>4pm – 7pm</span></button>
+            </div>
+          </div>
+
+          <div class="bk-step">
+            <label class="bk-q">3. Where should we come?</label>
+            <div class="bk-fields">
+              <input class="bk-in" id="bk-name" name="name" placeholder="Your name" autocomplete="name" required>
+              <input class="bk-in" id="bk-phone" name="phone" type="tel" placeholder="Mobile number" autocomplete="tel" inputmode="tel" required>
+              <input class="bk-in wide" id="bk-addr" name="address" placeholder="Service address" autocomplete="street-address" required>
+              <input class="bk-in wide" id="bk-notes" name="notes" placeholder="Anything we should know? (optional)">
+              <input class="bk-hp" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+            </div>
+          </div>
+
+          <p class="bk-err" id="bk-err" hidden></p>
+          <button class="tb-btn p bk-submit" id="bk-submit" type="submit">Request this time</button>
+          <p class="tb-note">We'll text to confirm your arrival window — usually within the hour during business hours.
+          Prefer to talk? <a href="tel:+18328878747" data-book="call">Call (832) 887-8747</a> or
+          <a href="sms:+18328878747" data-book="text">send a text</a>.</p>
+        </form>
+
+        <div class="bk-done" id="bk-done" hidden>
+          <div class="bk-check" aria-hidden="true">✓</div>
+          <h3>You're on the schedule</h3>
+          <p class="bk-ref">Reference <b id="bk-ref"></b></p>
+          <div class="bk-summary" id="bk-summary"></div>
+          <p class="bk-next">A TML dispatcher will text you shortly to confirm the exact arrival time.
+          Need it sooner? <a href="tel:+18328878747" data-book="call">Call (832) 887-8747</a>.</p>
+          <details class="bk-payload"><summary>Developer preview: what gets sent to Workiz</summary><pre id="bk-json"></pre></details>
+          <button class="tb-btn s" type="button" id="bk-again">Book another time</button>
         </div>
       </div>
     </div>
@@ -255,4 +368,124 @@ document.addEventListener("click", function (e) {
   var a = e.target.closest("[data-book]");
   if (a && window.dataLayer) window.dataLayer.push({ event: "book_click", method: a.getAttribute("data-book") });
 });
+
+/* ── native booking picker — PROTOTYPE ───────────────────────────────────
+   Everything below is UX only: no request is sent. When the Workiz API
+   token is in place, `submitBooking()` POSTs this same payload to
+   /api/book (see WORKIZ-BOOKING-DESIGN.md) instead of faking the delay. */
+(function () {
+  var form = document.getElementById("bk-form");
+  if (!form) return;
+  var state = { issue: "", day: null, win: null, range: "" };
+
+  /* day strip: today + next 6 days */
+  var DOW = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var daysEl = document.getElementById("bk-days");
+  var today = new Date();
+  for (var i = 0; i < 7; i++) {
+    var d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "bk-day";
+    b.dataset.iso = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    b.dataset.label = (i === 0 ? "Today" : i === 1 ? "Tomorrow" : DOW[d.getDay()] + " " + MON[d.getMonth()] + " " + d.getDate());
+    b.innerHTML = "<span>" + (i === 0 ? "Today" : i === 1 ? "Tomorrow" : DOW[d.getDay()]) + "</span><b>" +
+                  (i < 2 ? MON[d.getMonth()] + " " + d.getDate() : d.getDate()) + "</b>";
+    daysEl.appendChild(b);
+  }
+
+  function pick(container, el, key, extra) {
+    [].forEach.call(container.children, function (c) { c.classList.remove("on"); });
+    el.classList.add("on");
+    state[key] = el.dataset[extra || key] || el.textContent.trim();
+  }
+
+  document.getElementById("bk-issues").addEventListener("click", function (e) {
+    var b = e.target.closest(".bk-chip"); if (!b) return;
+    pick(this, b, "issue", "issue");
+    var urgent = state.issue === "Broken spring" || state.issue === "Door won't open" || state.issue === "Off track";
+    document.getElementById("bk-urgent").hidden = !urgent;
+  });
+  daysEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".bk-day"); if (!b) return;
+    pick(this, b, "day", "iso");
+    state.dayLabel = b.dataset.label;
+  });
+  document.getElementById("bk-windows").addEventListener("click", function (e) {
+    var b = e.target.closest(".bk-win"); if (!b) return;
+    pick(this, b, "win", "win");
+    state.range = b.dataset.range;
+  });
+
+  /* light phone formatting as they type */
+  var phone = document.getElementById("bk-phone");
+  phone.addEventListener("input", function () {
+    var v = this.value.replace(/\D/g, "").slice(0, 10);
+    this.value = v.length > 6 ? "(" + v.slice(0, 3) + ") " + v.slice(3, 6) + "-" + v.slice(6)
+               : v.length > 3 ? "(" + v.slice(0, 3) + ") " + v.slice(3) : v;
+  });
+
+  function fail(msg, el) {
+    var e = document.getElementById("bk-err");
+    e.textContent = msg; e.hidden = false;
+    if (el) { el.classList.add("bad"); el.focus(); }
+    return false;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    document.getElementById("bk-err").hidden = true;
+    [].forEach.call(form.querySelectorAll(".bk-in"), function (i) { i.classList.remove("bad"); });
+    if (form.company_website.value) return;                       /* honeypot */
+    var name = document.getElementById("bk-name"),
+        addr = document.getElementById("bk-addr"),
+        notes = document.getElementById("bk-notes");
+    if (!state.issue) return fail("Pick what's going on so we send the right technician.");
+    if (!state.day) return fail("Choose a day that works for you.");
+    if (!state.win) return fail("Choose an arrival window.");
+    if (!name.value.trim()) return fail("We need a name for the appointment.", name);
+    if (phone.value.replace(/\D/g, "").length !== 10) return fail("Enter a 10-digit mobile number so we can text your confirmation.", phone);
+    if (addr.value.trim().length < 6) return fail("Enter the service address.", addr);
+
+    var q = new URLSearchParams(location.search);
+    var payload = {
+      JobDateTime: state.day + "T" + state.range.split("–")[0].padStart(5, "0") + ":00",
+      JobEndDateTime: state.day + "T" + state.range.split("–")[1].padStart(5, "0") + ":00",
+      FirstName: name.value.trim().split(" ")[0],
+      LastName: name.value.trim().split(" ").slice(1).join(" "),
+      Phone: "+1" + phone.value.replace(/\D/g, ""),
+      Address: addr.value.trim(),
+      City: "", State: "TX", Country: "US", PostalCode: "",
+      JobType: state.issue,
+      JobNotes: notes.value.trim(),
+      JobSource: q.get("utm_source") || (q.get("gclid") ? "google-ads" : "website"),
+      Campaign: q.get("utm_campaign") || ""
+    };
+
+    var btn = document.getElementById("bk-submit");
+    btn.disabled = true; btn.textContent = "Sending…";
+    setTimeout(function () {                                       /* mock latency */
+      var ref = "TML-" + Math.random().toString(36).slice(2, 7).toUpperCase();
+      document.getElementById("bk-ref").textContent = ref;
+      document.getElementById("bk-summary").innerHTML =
+        "<div><span>Service</span><b>" + state.issue + "</b></div>" +
+        "<div><span>When</span><b>" + state.dayLabel + ", " + state.win + " (" + state.range.replace("–", "–") + ")</b></div>" +
+        "<div><span>Where</span><b>" + addr.value.trim() + "</b></div>" +
+        "<div><span>Contact</span><b>" + name.value.trim() + " · " + phone.value + "</b></div>";
+      document.getElementById("bk-json").textContent = JSON.stringify(payload, null, 2);
+      form.hidden = true;
+      document.getElementById("bk-done").hidden = false;
+      document.getElementById("bk-done").scrollIntoView({ block: "center", behavior: "smooth" });
+      btn.disabled = false; btn.textContent = "Request this time";
+      if (window.dataLayer) window.dataLayer.push({ event: "booking_submitted_demo", job_type: state.issue });
+    }, 700);
+  });
+
+  document.getElementById("bk-again").addEventListener("click", function () {
+    document.getElementById("bk-done").hidden = true;
+    form.hidden = false;
+    form.scrollIntoView({ block: "center", behavior: "smooth" });
+  });
+})();
 </script></body></html>
