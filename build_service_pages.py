@@ -402,6 +402,22 @@ for slug, cfg in PAGES.items():
              f'<div class="sp-acts"><a class="sp-btn p" href="{PHONE_HREF}" data-book="call">&#9742; Call {PHONE}</a>'
              f'<a class="sp-btn s" href="{SMS_HREF}" data-book="text">&#128172; Send us a text</a></div>'
              "</div></div></div>")
+    # drop any band a previous run left behind, or re-running stacks copies
+    while True:
+        prev = h.find('<div class="sp"><div class="sp-wrap"><div class="sp-final">')
+        if prev == -1:
+            break
+        depth, end = 3, None
+        import re as _re
+        for _m in _re.finditer(r"<div\b|</div>", h[prev + 58:]):
+            depth += 1 if _m.group(0) == "<div" else -1
+            if depth == 0:
+                end = prev + 58 + _m.end()
+                break
+        if end is None:
+            break
+        h = h[:prev] + h[end:]
+
     cta_at = h.find('<div class="tmlcta">')
     if cta_at > -1:
         end = h.find("</div></div>", cta_at)

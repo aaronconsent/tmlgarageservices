@@ -34,6 +34,13 @@
 <p>A running record of every repair made to the "Fixed" version of the site (<code>/fixed/</code>), kept for the site owner. The "Original" version is an untouched copy of the current live website; use the switcher on the left edge of any page to compare the two, page by page.</p>
 <p>Format: each entry says <strong>what</strong> was wrong, <strong>where</strong>, <strong>what changed</strong>, and <strong>why it matters</strong>.</p>
 <hr>
+<h2>2026-08-14 — Duplicate "Need this fixed today?" blocks removed</h2>
+<p>Each service page was ending with the same green call-to-action band printed <strong>three times in a row</strong>, directly below a fourth green band saying much the same thing. Four near-identical panels stacked at the bottom of the page.</p>
+<ul>
+<li><strong>The three copies are now one.</strong> A build step was adding the band each time it ran without clearing the previous one, so the copies accumulated. The step has been corrected and a check now removes stragglers automatically.</li>
+<li><strong>The two remaining bands are now a single block.</strong> They were the same green, 28px apart, and both carried the same "Call (832) 887-8747" button. The one that names the actual service was kept, and the text-message button moved into it, so every way of reaching TML is still one click away: **Call, Text, or Book online, together in one panel.**</li>
+</ul>
+<hr>
 <h2>2026-08-14 — Google reviews section repaired</h2>
 <p>The Google reviews block on the service pages was rendering as a column of very narrow, extremely tall cards — unreadable, and the opposite of the credibility boost it is there to provide.</p>
 <ul>

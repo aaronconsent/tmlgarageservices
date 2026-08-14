@@ -10,6 +10,23 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Duplicate "Need this fixed today?" blocks removed
+
+Each service page was ending with the same green call-to-action band printed
+**three times in a row**, directly below a fourth green band saying much the
+same thing. Four near-identical panels stacked at the bottom of the page.
+
+- **The three copies are now one.** A build step was adding the band each time
+  it ran without clearing the previous one, so the copies accumulated. The step
+  has been corrected and a check now removes stragglers automatically.
+- **The two remaining bands are now a single block.** They were the same green,
+  28px apart, and both carried the same "Call (832) 887-8747" button. The one
+  that names the actual service was kept, and the text-message button moved into
+  it, so every way of reaching TML is still one click away: **Call, Text, or
+  Book online, together in one panel.**
+
+---
+
 ## 2026-08-14 — Google reviews section repaired
 
 The Google reviews block on the service pages was rendering as a column of
