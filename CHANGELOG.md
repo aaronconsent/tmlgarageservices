@@ -10,6 +10,28 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Services page rebuilt around garage doors
+
+- **The Services page was still selling home remodeling.** Its description
+  read "Our home renovation services are the perfect fit for homeowners who
+  want to improve their home comfort," and the page closed with "bring your
+  vision to life… discuss your renovation ideas" — leftovers from the old
+  TML Home Improvement website. All of it is now garage-door copy.
+- **Two invisible problems, both fixed.** The page was telling Google *not
+  to list it* (a "noindex" tag left over from the old site build), and its
+  share/link address pointed at a misspelled old domain
+  ("tmlhomeimprovment.com"). Left alone, that page could never appear in
+  search results. *(See the note below about the live site.)*
+- **Rebuilt as a real services hub:** phone-first banner with the 5.0/213
+  Google rating, all seven services as cards with photos and plain-English
+  one-liners, a "what you can expect" panel (price before the work, a real
+  person answers, our own technicians, weekends cost the same), opener
+  brands, service areas, the review wall, six common questions answered,
+  and a closing "Garage door won't open?" call band.
+- **Added the structured data search engines and AI assistants read**:
+  service listings, breadcrumbs, and the FAQ — on top of the business and
+  review data already sitewide.
+
 ## 2026-08-14 — Service pages: FAQs and the booking call-out separated
 
 - **On all four service pages, the "Schedule … Today" call-out was buried
