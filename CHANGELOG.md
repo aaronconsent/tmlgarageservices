@@ -10,6 +10,30 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Last of the Webflow leftovers cleared out
+
+Nothing visible changed here. This was the final sweep for traces of the old
+platform in the page code:
+
+- Removed the "Last Published" stamp, the site and page identifiers, and the
+  animation hooks Webflow attached to elements — none of which did anything once
+  its code was gone.
+- Deleted the hidden "No project gallery found." placeholders Webflow leaves
+  behind for unfilled content, rather than keeping its styling around just to
+  hide them.
+- Removed the leftover styling rules that pointed at those hooks.
+
+**There are now no references to Webflow anywhere in the site's code** — no
+scripts, no identifiers, no links to its servers.
+
+One group was deliberately left in place: about a thousand `w-` prefixed style
+names still used by the site's stylesheet for layout. They are only names, they
+cost nothing, and renaming them would mean rewriting the stylesheet with a real
+risk of shifting the layout. That is a job worth doing on its own terms, not as
+a footnote to this clean-up.
+
+---
+
 ## 2026-08-14 — The site no longer runs on Webflow's code
 
 Every page was loading jQuery and Webflow's framework — about 417 KB of

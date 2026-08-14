@@ -34,6 +34,16 @@
 <p>A running record of every repair made to the "Fixed" version of the site (<code>/fixed/</code>), kept for the site owner. The "Original" version is an untouched copy of the current live website; use the switcher on the left edge of any page to compare the two, page by page.</p>
 <p>Format: each entry says <strong>what</strong> was wrong, <strong>where</strong>, <strong>what changed</strong>, and <strong>why it matters</strong>.</p>
 <hr>
+<h2>2026-08-14 — Last of the Webflow leftovers cleared out</h2>
+<p>Nothing visible changed here. This was the final sweep for traces of the old platform in the page code:</p>
+<ul>
+<li>Removed the "Last Published" stamp, the site and page identifiers, and the animation hooks Webflow attached to elements — none of which did anything once its code was gone.</li>
+<li>Deleted the hidden "No project gallery found." placeholders Webflow leaves behind for unfilled content, rather than keeping its styling around just to hide them.</li>
+<li>Removed the leftover styling rules that pointed at those hooks.</li>
+</ul>
+<p><strong>There are now no references to Webflow anywhere in the site's code</strong> — no scripts, no identifiers, no links to its servers.</p>
+<p>One group was deliberately left in place: about a thousand <code>w-</code> prefixed style names still used by the site's stylesheet for layout. They are only names, they cost nothing, and renaming them would mean rewriting the stylesheet with a real risk of shifting the layout. That is a job worth doing on its own terms, not as a footnote to this clean-up.</p>
+<hr>
 <h2>2026-08-14 — The site no longer runs on Webflow's code</h2>
 <p>Every page was loading jQuery and Webflow's framework — about 417 KB of JavaScript on every visit — to power five things. All five have been replaced with code the browser already has built in, and the framework is gone.</p>
 <p>Along the way this fixed two things that were quietly broken:</p>

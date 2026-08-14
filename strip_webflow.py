@@ -21,6 +21,13 @@ APPROVED = [
     "video-control",
     "cms-templates",
     "webflow-js",
+    "last-published",
+    "wf-identifiers",
+    "interaction-hooks",
+    "dead-classes",
+    "empty-states",
+    "ix-styles",
+    "video-fallback-class",
 ]
 
 
@@ -115,16 +122,91 @@ def webflow_js(html):
     return html, a + b + c
 
 
+# checked against the stylesheet: these six w-* classes are matched by no rule in
+# the site CSS or any injected block, so they are inert markup. The other 26 w-*
+# classes ARE styled and must stay unless the stylesheet is rewritten with them.
+DEAD_CLASSES = ("w-dyn-item", "w-dyn-repeater-item", "w-dyn-list", "w-dyn-items",
+                "w-script", "w-background-video-atom")
+
+
+def dead_classes(html):
+    """Drop CMS-wrapper classes that nothing styles and nothing reads."""
+    n = 0
+
+    def clean(m):
+        nonlocal n
+        classes = m.group(1).split()
+        keep = [c for c in classes if c not in DEAD_CLASSES]
+        if len(keep) == len(classes):
+            return m.group(0)
+        n += len(classes) - len(keep)
+        return f'class="{" ".join(keep)}"' if keep else ""
+
+    return re.sub(r'class="([^"]*)"', clean, html), n
+
+
+def empty_states(html):
+    """Delete Webflow's CMS empty-state placeholders instead of keeping a Webflow
+    class around to hide them.
+
+    'No project gallery found.' and the empty <p class="w-dyn-bind-empty"></p>
+    stubs exist only so an unfilled CMS field renders as nothing. They are hidden
+    by .w-dyn-hide / .w-dyn-empty rules, so removing the class alone would make
+    the placeholder text visible — the element has to go with it."""
+    n = 0
+    html, a = re.subn(r'<div[^>]*class="[^"]*w-dyn-(?:hide|empty)[^"]*"[^>]*>.*?</div>\s*</div>',
+                      "", html, flags=re.S)
+    html, b = re.subn(r'<p class="w-dyn-bind-empty"></p>', "", html)
+    return html, a + b
+
+
+def ix_styles(html):
+    """Webflow emits <style> rules keyed to [data-w-id] to pre-position elements
+    for its interactions engine. Both the engine and the attributes are gone, and
+    the rules are also gated on html.w-mod-js which is no longer set."""
+    return re.subn(r'<style>@media[^<]*\[data-w-id[^<]*</style>', "", html)
+
+
+def video_fallback_class(html):
+    """The <noscript> poster image was styled via [data-wf-bgvideo-fallback-img],
+    an attribute the earlier step stripped. Rather than put a Webflow attribute
+    back, point the same rules at a class so the no-JavaScript and
+    reduced-motion behaviour stays exactly as it was."""
+    if "tmlvid-fallback" in html or "data-wf-bgvideo-fallback-img" not in html:
+        return html, 0
+    n = 0
+    html, a = re.subn(r'\[data-wf-bgvideo-fallback-img\]', ".tmlvid-fallback", html)
+    # the poster <img> lives inside the same <noscript> as the rule, after a
+    # <style> block — not immediately after <noscript>, and not the first
+    # <noscript><img> in the document (that one is the Facebook pixel)
+    def tag_img(m):
+        return m.group(0).replace("<img ", '<img class="tmlvid-fallback" ', 1)
+    html, b = re.subn(r'<noscript><style>[^<]*tmlvid-fallback.*?</noscript>', tag_img, html, flags=re.S)
+    return html, a + b
+
+
 def last_published(html):
     """The '<!-- Last Published: ... -->' banner Webflow stamps on every export."""
     return re.subn(r"<!--\s*Last Published:.*?-->", "", html, flags=re.S)
 
 
 def wf_identifiers(html):
-    """data-wf-domain / -page / -site / -collection / -item on <html>. Webflow's
-    own runtime reads these, so this step must run only after the Webflow JS is
-    gone. Not approved yet."""
-    return re.subn(r'\sdata-wf-(?:domain|page|site|collection|item)="[^"]*"', "", html)
+    """data-wf-domain / -page / -site / -collection / -item. Only Webflow's own
+    runtime read these, and that is no longer loaded."""
+    return re.subn(r'\sdata-wf-[a-z-]+="[^"]*"', "", html)
+
+
+def interaction_hooks(html):
+    """data-w-id pointed the Webflow interactions engine at an element. With the
+    engine gone they address nothing. Also drops the widget config attributes
+    that only its scripts read (data-animation / -collapse / -duration / -easing
+    / -delay / -autoplay and friends on nav, slider and dropdown wrappers)."""
+    n = 0
+    html, a = re.subn(r'\sdata-w-id="[^"]*"', "", html)
+    html, b = re.subn(r'\sdata-(?:animation|collapse|duration|easing2?|delay|autoplay|'
+                      r'autoplay-limit|hide-arrows|disable-swipe|nav-spacing|infinite|'
+                      r'hover|doc-height|no-scroll)="[^"]*"', "", html)
+    return html, a + b
 
 
 STEPS = {
@@ -135,6 +217,11 @@ STEPS = {
     "video-control": ("background-video play/pause -> native", video_control),
     "cms-templates": ("dead CMS repeater templates", cms_templates),
     "webflow-js": ("jQuery + Webflow bundle", webflow_js),
+    "interaction-hooks": ("data-w-id + widget config attributes", interaction_hooks),
+    "dead-classes": ("unstyled w-dyn-* wrapper classes", dead_classes),
+    "empty-states": ("CMS empty-state placeholders", empty_states),
+    "ix-styles": ("inert [data-w-id] interaction styles", ix_styles),
+    "video-fallback-class": ("video fallback: attribute selector -> class", video_fallback_class),
 }
 
 
