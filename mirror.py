@@ -129,6 +129,9 @@ def rewrite(html: str) -> str:
     # keep the mirror out of search indexes until the domain cutover
     if 'name="robots"' not in html:
         html = html.replace("<head>", '<head><meta name="robots" content="noindex, nofollow">', 1)
+    # version switcher (site/switch.js); NOTE: a mirror refresh only rewrites
+    # the ORIGINAL pages — site/fixed/ keeps its applied fixes
+    html = html.replace("</body>", '<script src="/switch.js" defer></script></body>', 1)
     return html
 
 for path, html in pages.items():
