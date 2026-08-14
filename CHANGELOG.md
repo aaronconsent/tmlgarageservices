@@ -10,6 +10,33 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — The site no longer runs on Webflow's code
+
+Every page was loading jQuery and Webflow's framework — about 417 KB of
+JavaScript on every visit — to power five things. All five have been replaced
+with code the browser already has built in, and the framework is gone.
+
+Along the way this fixed two things that were quietly broken:
+
+- **The contact form never worked on this copy of the site.** It had no
+  destination: it relied on Webflow's servers, which this exported version
+  cannot reach. Every "Request Appointment" went nowhere — no email, no record,
+  and the visitor saw no error, so they believed they had reached you. It is
+  replaced by a panel that sends people to the online booking page, with call
+  and text alongside it. **Anyone who filled in that form was never heard.**
+- **Four FAQ answers on the home page and About page could not be opened.**
+  Clicking a question did nothing at all. They now open and close properly, and
+  can be found by the browser's search-in-page.
+
+Also replaced: the photo pop-ups, the photo carousel, the tabbed panels, and the
+home page video's play button — all now using the browser's own features, all
+working from the keyboard, and all lighter than what they replaced.
+
+Nothing on the site looks different. It is simply much lighter and no longer
+depends on a platform the site was exported away from.
+
+---
+
 ## 2026-08-14 — More of the old Webflow machinery removed
 
 Continuing the clean-up, each step checked before it was made:

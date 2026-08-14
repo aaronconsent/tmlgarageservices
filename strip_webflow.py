@@ -20,6 +20,7 @@ APPROVED = [
     "self-host-fonts",
     "video-control",
     "cms-templates",
+    "webflow-js",
 ]
 
 
@@ -98,6 +99,22 @@ def cms_templates(html):
     return re.subn(r'<script type="text/x-wf-template"[^>]*>.*?</script>', "", html, flags=re.S)
 
 
+def webflow_js(html):
+    """Remove jQuery and the Webflow bundle.
+
+    Safe only once nothing on the page needs them. At the time this was enabled:
+    slider, tabs, lightbox, forms and the FAQ accordions had all been replaced
+    with native equivalents; the background video plays on its own attributes;
+    the nav is driven by our own script; and no element is hidden waiting for a
+    Webflow interaction to reveal it (checked across all 36 pages)."""
+    n = 0
+    html, a = re.subn(r'<script[^>]+src="[^"]*jquery[^"]*"[^>]*>\s*</script>', "", html)
+    html, b = re.subn(r'<script[^>]+src="[^"]*/js/webflow[^"]*"[^>]*>\s*</script>', "", html)
+    # the touch/JS feature-detect stub Webflow inlines next to them
+    html, c = re.subn(r'<script[^>]*>\s*!function\(o,c\)\{var n=c\.documentElement.*?</script>', "", html, flags=re.S)
+    return html, a + b + c
+
+
 def last_published(html):
     """The '<!-- Last Published: ... -->' banner Webflow stamps on every export."""
     return re.subn(r"<!--\s*Last Published:.*?-->", "", html, flags=re.S)
@@ -117,6 +134,7 @@ STEPS = {
     "self-host-fonts": ("Google WebFont loader -> self-hosted", self_host_fonts),
     "video-control": ("background-video play/pause -> native", video_control),
     "cms-templates": ("dead CMS repeater templates", cms_templates),
+    "webflow-js": ("jQuery + Webflow bundle", webflow_js),
 }
 
 
