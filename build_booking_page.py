@@ -86,7 +86,7 @@ STYLE = """<style id="tmlbook-css">
 .tb-hero p.lede{font-size:clamp(16px,2vw,19px);line-height:1.5;max-width:56ch;margin:0 0 20px;color:#eef3e6;}
 .tb-trust{display:flex;flex-wrap:wrap;gap:10px 26px;padding:0;margin:0;list-style:none;}
 .tb-trust li{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:#fff;white-space:nowrap;}
-.tb-trust li::before{content:"✓";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#cfe84d;color:#1f2418;font-size:13px;font-weight:800;}
+.tb-trust li::before{content:"✓";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#587735;color:#fff;font-size:13px;font-weight:800;}
 .tb-hero-stars{color:#ffd35c;letter-spacing:2px;}
 .tb-main{padding:38px 0 10px;}
 .tb-grid{display:grid;gap:24px;}
@@ -222,7 +222,6 @@ BODY = f"""
     <ul class="tb-trust">
       <li><span class="tb-hero-stars">★★★★★</span>&nbsp;5.0 from 213 Google reviews</li>
       <li>Same-day appointments</li>
-      <li>No weekend surcharge</li>
       <li>Upfront pricing</li>
     </ul>
     </div>
