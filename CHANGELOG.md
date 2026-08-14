@@ -10,6 +10,18 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Service pages: FAQs and the booking call-out separated
+
+- **On all four service pages, the "Schedule … Today" call-out was buried
+  inside the FAQ list** — it ran on straight after the last answer, so it
+  read like one more question instead of the invitation to book. It's now
+  its own green panel with a Call button and a Book online button.
+- **The questions themselves are now a proper FAQ block** — tap-to-open
+  cards under a clear heading, instead of a wall of headings and
+  paragraphs.
+- **Added FAQ structured data to those pages**, so Google and AI assistants
+  can pull the answers directly into results.
+
 ## 2026-08-14 — Cleaner homepage banner
 
 - **Removed the "☎ CALL NOW / 832-887-8747" box** from the top-left of the
