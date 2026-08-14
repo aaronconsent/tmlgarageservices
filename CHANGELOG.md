@@ -10,6 +10,21 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Mobile rework: one clean way to reach you
+
+- **A Call / Text bar now sits at the bottom of every page on phones** — two
+  big thumb-friendly buttons: CALL dials (832) 887-8747, TEXT starts a text
+  message to the same number. Always visible, never covers the content.
+- **Removed the three competing phone buttons from the mobile view** — the
+  "CALL NOW" box and phone button in the homepage banner, and the floating
+  red emergency button that used to sit on top of text and form fields.
+  One clear path beats three overlapping ones.
+- **The homepage banner text is finally readable on phones** — it now sits
+  in a semi-transparent dark panel over the video instead of white text on
+  a white garage door.
+- **"Explore Services" is now an actual button** on mobile instead of a
+  small text link.
+
 ## 2026-08-14 — Financing message made readable
 
 - **"Renovate Now. Pay Later." was light gray on a green background** on the
