@@ -10,6 +10,25 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — More of the old Webflow machinery removed
+
+Continuing the clean-up, each step checked before it was made:
+
+- **The photo pop-ups on the four project pages** now use the browser's own
+  pop-up instead of Webflow's. Clicking a photo still opens it large over a
+  dimmed background; pressing Escape or clicking outside closes it, which the
+  old one did not do.
+- **The play/pause button on the home page video** no longer needs Webflow's
+  code. The video itself never did. One small addition: if a visitor has asked
+  their phone or computer to reduce motion, the video now waits rather than
+  playing automatically — the button still starts it.
+- **Removed hidden copies of page markup** that Webflow leaves behind on the
+  project pages. They were never displayed, and every one of them still pointed
+  at Webflow's own servers for the photographs. **There are now no references to
+  Webflow's servers anywhere on the site.**
+
+---
+
 ## 2026-08-14 — "Why Choose TML" is now its own section, and the photo gallery no longer needs Webflow
 
 **Why Choose TML Garage Door Services.** On the home page and the About page this

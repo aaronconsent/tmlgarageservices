@@ -34,6 +34,14 @@
 <p>A running record of every repair made to the "Fixed" version of the site (<code>/fixed/</code>), kept for the site owner. The "Original" version is an untouched copy of the current live website; use the switcher on the left edge of any page to compare the two, page by page.</p>
 <p>Format: each entry says <strong>what</strong> was wrong, <strong>where</strong>, <strong>what changed</strong>, and <strong>why it matters</strong>.</p>
 <hr>
+<h2>2026-08-14 — More of the old Webflow machinery removed</h2>
+<p>Continuing the clean-up, each step checked before it was made:</p>
+<ul>
+<li><strong>The photo pop-ups on the four project pages</strong> now use the browser's own pop-up instead of Webflow's. Clicking a photo still opens it large over a dimmed background; pressing Escape or clicking outside closes it, which the old one did not do.</li>
+<li><strong>The play/pause button on the home page video</strong> no longer needs Webflow's code. The video itself never did. One small addition: if a visitor has asked their phone or computer to reduce motion, the video now waits rather than playing automatically — the button still starts it.</li>
+<li><strong>Removed hidden copies of page markup</strong> that Webflow leaves behind on the project pages. They were never displayed, and every one of them still pointed at Webflow's own servers for the photographs. **There are now no references to Webflow's servers anywhere on the site.**</li>
+</ul>
+<hr>
 <h2>2026-08-14 — "Why Choose TML" is now its own section, and the photo gallery no longer needs Webflow</h2>
 <p><strong>Why Choose TML Garage Door Services.</strong> On the home page and the About page this was the left-hand column of a two-column block, sharing the row with the FAQ list. Seven reasons to hire you were squeezed into a narrow column of small text running down the side of the page, reading like a caption to the FAQ rather than an argument of its own. It is now a <strong>full-width section of its own, sitting above the FAQ</strong>, with each reason as a headed point with a check against it, three across on a desktop and stacking on a phone. Same words, same black section, same phone and Explore Services buttons.</p>
 <p><strong>The "Some of our work" photo gallery</strong> on five pages was a Webflow slider. It has been rebuilt using the browser's own scrolling, which means swiping on a phone now feels like every other gallery on your phone rather than a website imitation of one. Clicking a photo still opens it full-size. Arrows, position dots and the photos themselves are unchanged. This removes one of the four things still tying the site to the old Webflow code.</p>

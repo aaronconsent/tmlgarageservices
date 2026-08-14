@@ -18,6 +18,8 @@ F = ROOT / "site" / "fixed"
 APPROVED = [
     "dead-script",
     "self-host-fonts",
+    "video-control",
+    "cms-templates",
 ]
 
 
@@ -50,6 +52,52 @@ def self_host_fonts(html):
     return html, n
 
 
+VIDEO_JS = """<script id="tmlvid-js">
+/* Play/pause for the hero background video. The <video> element already
+   autoplays natively (autoplay + muted + loop + playsinline) and the stylesheet
+   already sets object-fit, so Webflow's script was only driving this button. */
+(function () {
+  document.querySelectorAll("[data-w-bg-video-control]").forEach(function (btn) {
+    var vid = document.getElementById(btn.getAttribute("aria-controls"));
+    if (!vid) return;
+    var icons = btn.querySelectorAll("span");
+    function render() {
+      var playing = !vid.paused;
+      if (icons[0]) icons[0].hidden = !playing;
+      if (icons[1]) icons[1].hidden = playing;
+      btn.setAttribute("aria-label", playing ? "Pause video" : "Play video");
+    }
+    btn.addEventListener("click", function () {
+      if (vid.paused) { vid.play(); } else { vid.pause(); }
+    });
+    vid.addEventListener("play", render);
+    vid.addEventListener("pause", render);
+    render();
+    /* someone who has asked their device for less motion should not be handed
+       a looping video; the button still lets them start it */
+    try {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) vid.pause();
+    } catch (e) {}
+  });
+})();
+</script>"""
+
+
+def video_control(html):
+    """Take the background-video play/pause button off the Webflow bundle."""
+    if "data-w-bg-video-control" not in html:
+        return html, 0
+    html = re.sub(r'<script id="tmlvid-js">.*?</script>', "", html, flags=re.S)
+    return html.replace("</body>", VIDEO_JS + "</body>", 1), 1
+
+
+def cms_templates(html):
+    """Webflow CMS repeater templates: a URL-encoded copy of the list markup that
+    the browser never renders. Dead weight, and every one of them still points at
+    Webflow's own CDN rather than this site."""
+    return re.subn(r'<script type="text/x-wf-template"[^>]*>.*?</script>', "", html, flags=re.S)
+
+
 def last_published(html):
     """The '<!-- Last Published: ... -->' banner Webflow stamps on every export."""
     return re.subn(r"<!--\s*Last Published:.*?-->", "", html, flags=re.S)
@@ -67,6 +115,8 @@ STEPS = {
     "last-published": ("Last Published comment", last_published),
     "wf-identifiers": ("data-wf-* identifiers", wf_identifiers),
     "self-host-fonts": ("Google WebFont loader -> self-hosted", self_host_fonts),
+    "video-control": ("background-video play/pause -> native", video_control),
+    "cms-templates": ("dead CMS repeater templates", cms_templates),
 }
 
 
