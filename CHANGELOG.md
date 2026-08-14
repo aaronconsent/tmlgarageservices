@@ -10,6 +10,32 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Header menu reworked, and hidden sections brought into view
+
+**The menu.** The four items now sit to the left beside the logo instead of
+floating in the middle of the bar, each with a small icon. The Brands menu was
+the real problem: it opened on hover only, which means it could not be used on a
+phone at all, and on a desktop it snapped shut if the mouse strayed while
+travelling down to the list. It now opens on a click, on every device, and stays
+open until you pick something, click elsewhere, or press Escape. It also works
+from the keyboard now, which it did not before.
+
+**Sections that were hiding half their content.** Three pages used a tab widget
+where only one panel showed at a time and the tab labels looked like ordinary
+paragraphs, so nothing indicated there was more to see:
+
+- On the **home page**, "Why Choose TML Garage Door Services?" was visible and
+  "What You Can Expect From TML" — your eight promises, the strongest trust
+  content on the page — was hidden behind a tab most visitors would never click.
+  Both are now full sections, one after the other, with the eight promises shown
+  as a checked list.
+- The **About** page and **The Woodlands** page had the same widget hiding
+  "Trend Watch", "Quality Assurance" and "Client Focus". All now show in full.
+
+No wording changed anywhere — content that was hidden is simply on the page now.
+
+---
+
 ## 2026-08-14 — Driveway gate and commercial overhead door pages built out
 
 Two service pages existed in name only. Each was about a paragraph long: two
