@@ -10,6 +10,39 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — The remaining three service pages rebuilt to match
+
+Spring replacement, new door installation and commercial doors now follow the
+same structure as the opener page you reviewed. **All existing copy is intact** —
+only the order and presentation changed.
+
+Each page now answers questions in the order a customer asks them: what's wrong
+(or what you gain), what it costs, what the job involves step by step, proof from
+213 Google reviews, the detail for people still researching, then why TML, the
+FAQ, service area and one clear way to get in touch.
+
+A few pages needed their own treatment rather than a copy of the opener layout:
+
+- **Spring replacement** leads with the eight warning signs, and the safety
+  warning about not attempting spring work yourself now sits directly under that
+  list where it will actually be read.
+- **New door installation** opens with the eight *benefits* of a new door rather
+  than a fault list — the same layout, but marked in green because these are
+  reasons to buy, not symptoms. The door styles you install are shown as
+  photographs where photos exist, with the remaining styles listed beneath, and
+  the manufacturers you carry follow after — style first, then brand, the order
+  a customer decides in.
+- **Commercial** keeps its two services side by side (repair and installation),
+  and the preventive maintenance programme has its own section rather than being
+  buried in a list.
+- Where a page has one service rather than two, its lead photograph now sits
+  beside the opening paragraphs instead of in a half-width panel.
+
+Section backgrounds alternate automatically so two shaded sections can never
+end up against each other and read as one long block.
+
+---
+
 ## 2026-08-14 — Opener page rebuilt around how people actually shop
 
 The garage door opener page has been rebuilt from the ground up between the
