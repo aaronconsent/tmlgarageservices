@@ -10,6 +10,42 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Images fixed and the whole site made 9x lighter
+
+A polish pass over the service pages turned up one broken image and one much
+bigger problem underneath it.
+
+- **A photo that never loaded.** The technician-and-customer photo on the
+  opener page pointed at the wrong asset folder, so visitors saw an empty grey
+  box where the picture should be. Fixed.
+- **The site was shipping 20 MB of images per page.** The original Webflow
+  export uses 2 MB photographs everywhere, including as small thumbnails, and
+  even Webflow's own smaller fallbacks stayed in the same heavy format. A
+  single service page pulled about 20 MB of images. Every content photo is now
+  also published in a modern compressed format at four sizes, and the browser
+  picks the smallest one that suits the visitor's screen. **The same page now
+  loads about 2 MB — roughly a ninth of what it was.** On a phone on cell
+  service that is the difference between a page that appears and a page
+  someone abandons. The original files are untouched and still serve as a
+  fallback.
+- **The photo banner under each page title** was locked to a fixed box that
+  cropped the photograph awkwardly, sat with square corners while everything
+  around it is rounded, and overhung the text column by about 60 px. It now
+  matches the section photos below it and lines up with the text.
+- **Section styling brought in line with the rest of the page.** Corner radii,
+  spacing, text sizes and chip shapes in the new sections were each a pixel or
+  two off from the same elements elsewhere on the page; they now use identical
+  values. Paragraph width is capped for readability instead of running the full
+  page width.
+- **Door-style gallery fixed.** Leftover styling from the old site was making
+  the cards half-width with large gaps between them on phones. They now fill
+  the column and sit in an even grid.
+- **Two ordering bugs.** An intro line ending in a colon was printing after the
+  list it introduces, and one heading was claiming a photo layout it had no
+  content for, leaving an empty column beside it.
+
+---
+
 ## 2026-08-14 — Service-page copy broken into designed sections with photos
 
 The service pages carried long unbroken walls of text — a heading followed by

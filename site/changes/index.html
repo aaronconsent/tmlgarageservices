@@ -34,6 +34,17 @@
 <p>A running record of every repair made to the "Fixed" version of the site (<code>/fixed/</code>), kept for the site owner. The "Original" version is an untouched copy of the current live website; use the switcher on the left edge of any page to compare the two, page by page.</p>
 <p>Format: each entry says <strong>what</strong> was wrong, <strong>where</strong>, <strong>what changed</strong>, and <strong>why it matters</strong>.</p>
 <hr>
+<h2>2026-08-14 — Images fixed and the whole site made 9x lighter</h2>
+<p>A polish pass over the service pages turned up one broken image and one much bigger problem underneath it.</p>
+<ul>
+<li><strong>A photo that never loaded.</strong> The technician-and-customer photo on the opener page pointed at the wrong asset folder, so visitors saw an empty grey box where the picture should be. Fixed.</li>
+<li><strong>The site was shipping 20 MB of images per page.</strong> The original Webflow export uses 2 MB photographs everywhere, including as small thumbnails, and even Webflow's own smaller fallbacks stayed in the same heavy format. A single service page pulled about 20 MB of images. Every content photo is now also published in a modern compressed format at four sizes, and the browser picks the smallest one that suits the visitor's screen. **The same page now loads about 2 MB — roughly a ninth of what it was.** On a phone on cell service that is the difference between a page that appears and a page someone abandons. The original files are untouched and still serve as a fallback.</li>
+<li><strong>The photo banner under each page title</strong> was locked to a fixed box that cropped the photograph awkwardly, sat with square corners while everything around it is rounded, and overhung the text column by about 60 px. It now matches the section photos below it and lines up with the text.</li>
+<li><strong>Section styling brought in line with the rest of the page.</strong> Corner radii, spacing, text sizes and chip shapes in the new sections were each a pixel or two off from the same elements elsewhere on the page; they now use identical values. Paragraph width is capped for readability instead of running the full page width.</li>
+<li><strong>Door-style gallery fixed.</strong> Leftover styling from the old site was making the cards half-width with large gaps between them on phones. They now fill the column and sit in an even grid.</li>
+<li><strong>Two ordering bugs.</strong> An intro line ending in a colon was printing after the list it introduces, and one heading was claiming a photo layout it had no content for, leaving an empty column beside it.</li>
+</ul>
+<hr>
 <h2>2026-08-14 — Service-page copy broken into designed sections with photos</h2>
 <p>The service pages carried long unbroken walls of text — a heading followed by a plain bulleted list, several times over. On a phone that reads as a scroll with nothing to hold on to. The words are unchanged; the layout around them is not:</p>
 <ul>
