@@ -10,6 +10,44 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Broken links, search visibility, and page-structure repairs
+
+- **Removed 128 links to pages that don't exist.** The menus and footers
+  linked to seven pages that were deleted long ago (Bathroom Renovations,
+  Flooring, Kitchen Remodeling, Complete Home Renovation, and three
+  gate/overhead-door pages) — clicking any of them landed visitors on an
+  error page. The four home-improvement links were removed; the three
+  gate/overhead links now point to the closest real service page.
+- **Replaced the broken reviews widgets with your actual awards.** The
+  "Clients Review" section on six pages loaded a third-party widget that
+  publicly displayed "Site owner: upgrade your plan" instead of reviews.
+  It now shows your Angi Super Service Award and HomeAdvisor badges with
+  links to your real review profiles.
+- **Repaired the contact page headline.** The main heading was an entire
+  paragraph that cut off mid-word ("…or a routine maintena"). It now reads
+  "TML Garage Door Services is here to help." with the rest of the message
+  as normal text below it.
+- **Gave the four brand pages real search listings.** LiftMaster, Genie,
+  Chamberlain, and Craftsman pages all shared the generic title
+  "TML Garage Door Services" with no description — these are the pages that
+  should rank for "LiftMaster repair near me" searches. Each now has a
+  unique title and description; nine other pages got missing descriptions.
+- **Fixed the image that appears when the site is shared.** Sharing any page
+  on Facebook/text messages showed a stock template avatar (or nothing).
+  It now shows a real garage door photo.
+- **Fixed page structure for Google.** Service pages had 4–5 "main
+  headlines" competing with each other and all eight blog posts had none —
+  17 extra headings demoted, 8 blog titles promoted, so every page now has
+  exactly one main heading.
+- **Made the financing message readable.** "Renovate Now. Pay Later." was
+  light gray on a green background — nearly invisible. Now white.
+- **Moved the red emergency button** from the bottom-left (where it covered
+  text and form fields) to the bottom-right corner.
+- **Described 244 images for accessibility and image search.** Photos had
+  no alt descriptions; screen readers and Google Images now know what's in
+  them. Also removed image variants that pointed at files that don't exist
+  (a silent error on every page load).
+
 ## 2026-08-14 — Phone, address, and email repairs
 
 - **Every call button now dials the right number.** 121 of the site's 135
