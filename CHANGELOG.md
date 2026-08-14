@@ -10,6 +10,20 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Dead links: removed the old ones, built the missing pages
+
+- **Removed 140 links to deleted home-improvement pages.** The menus and
+  footers on nearly every page linked to Bathroom Renovations, Flooring,
+  Kitchen Remodeling, and Complete Home Renovation — pages that no longer
+  exist. Every click landed on an error page. Those links are gone.
+- **Built the three missing gate/overhead pages.** The services page linked
+  to Residential Driveway Gate Services, Commercial Overhead Door Services,
+  and Commercial Gate &amp; Opener Services — services TML offers, but the
+  pages were never created. Each now exists as a simple page in the site's
+  own style, written from TML's already-published claims (same-day service,
+  insured technicians, service area). *Owner: please review the wording on
+  these three pages and tell us anything you'd like changed.*
+
 ## 2026-08-14 — Phone, address, and email repairs
 
 - **Every call button now dials the right number.** 121 of the site's 135
