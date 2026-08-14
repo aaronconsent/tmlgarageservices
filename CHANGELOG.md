@@ -10,6 +10,34 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Driveway gate and commercial overhead door pages built out
+
+Two service pages existed in name only. Each was about a paragraph long: two
+sentences, the standard expectations list, a phone number, and nothing else — no
+banner, no reviews, no questions answered, and nothing for Google to index. Both
+now match the other service pages.
+
+- **Residential Driveway Gate Services** and **Commercial Overhead Door
+  Services** each have a photo banner, the twelve most common faults for that
+  equipment, the upfront-pricing promise, a numbered walk-through of what a
+  service visit covers, the 5.0 rating from 213 Google reviews, four answered
+  questions, the service area, and a clear way to get in touch.
+- **The three missing photos on the services page are fixed.** Four of the seven
+  service cards had a picture and three did not, so the grid looked
+  half-finished. TML's own photo library already contained pictures named for
+  exactly those three services — they shipped with the site and had simply never
+  been connected. All seven cards now have a photo.
+
+**Please read these two pages before showing them to customers.** Unlike every
+other change in this log, most of the wording here is new rather than yours —
+the originals had almost nothing to work from. Everything TML already says about
+these services is used word for word; the rest describes common symptoms and
+what a service call involves. It deliberately claims nothing about gate brands,
+gate types, materials, or anything else that isn't already stated somewhere on
+your site, because guessing at those would put words in your mouth.
+
+---
+
 ## 2026-08-14 — The remaining three service pages rebuilt to match
 
 Spring replacement, new door installation and commercial doors now follow the
