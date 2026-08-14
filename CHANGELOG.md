@@ -10,6 +10,19 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Search listings for the brand pages
+
+- **The four opener-brand pages (LiftMaster, Genie, Chamberlain, Craftsman)
+  all had the same generic title** — "TML Garage Door Services" — and no
+  description. These are the pages that should win searches like
+  "LiftMaster garage door opener repair Houston." Each now has a unique
+  title ("LiftMaster Garage Door Opener Repair &amp; Installation | TML
+  Garage Services | Conroe, TX") and a description with the service area
+  and phone number.
+- **Nine more pages were missing descriptions** (contact, The Woodlands
+  page, legal pages) — all filled in. Title and description are what
+  searchers read in a Google listing; every page now has its own.
+
 ## 2026-08-14 — Contact page headline repaired
 
 - **The contact page's main headline was a full paragraph that cut off
