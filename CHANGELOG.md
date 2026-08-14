@@ -36,6 +36,11 @@ with a broken door actually asks them:
 6. **Why customers choose TML**, the FAQ, service area, and one clear closing
    call to action.
 
+The eleven-step installation list now has a section of its own below the two
+services, numbered in the order the work actually happens, three columns wide on
+a desktop and one on a phone. Previously it sat inside one of the two side-by-side
+columns and made that column roughly three times taller than the one next to it.
+
 Presentation notes: the content column is centred with generous line spacing,
 section backgrounds alternate so each part reads as a distinct answer, and the
 symptom list uses simple ruled rows rather than boxes so twelve items stay

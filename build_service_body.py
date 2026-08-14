@@ -64,14 +64,18 @@ PAGE = {
               "that delivers smooth, quiet, and dependable performance.",
          "img": f"{A1}/6a542e2ec6b8791b21582f07_Photo%20Jul%2012%202026%2C%207%2009%2027%20PM%20(2)%20(1).png",
          "alt": "TML technician installing a new LiftMaster garage door opener",
-         "list_h": "Our installation service includes:",
-         "list": ["Removal of your old garage door opener", "Professional installation of a new opener",
-                  "Rail and drive system installation", "Motor mounting and setup",
-                  "Safety sensor installation", "Wall control installation", "Remote programming",
-                  "Wireless keypad setup", "Smart phone app configuration (when available)",
-                  "Complete safety testing", "Final adjustments and operation check"]},
+         "list_h": "", "list": []},
     ],
-    "jobs_close": "We'll make sure your new opener is properly adjusted and ready for reliable everyday use.",
+    "jobs_close": "",
+    # the install list is the job in order, start to finish — its own section, not a
+    # column that dwarfs the one beside it
+    "steps_h": "Our installation service includes:",
+    "steps": ["Removal of your old garage door opener", "Professional installation of a new opener",
+              "Rail and drive system installation", "Motor mounting and setup",
+              "Safety sensor installation", "Wall control installation", "Remote programming",
+              "Wireless keypad setup", "Smart phone app configuration (when available)",
+              "Complete safety testing", "Final adjustments and operation check"],
+    "steps_close": "We'll make sure your new opener is properly adjusted and ready for reliable everyday use.",
     "specs": [
         ("Types of Garage Door Openers We Install", "We install and replace:",
          ["Belt Drive Garage Door Openers", "Chain Drive Garage Door Openers",
@@ -155,6 +159,16 @@ CSS = """<style id="tmlsv2-css">
 .sv2 .sv2-check li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;line-height:1.5;color:var(--mut);}
 .sv2 .sv2-check li::before{content:"✓";flex:0 0 auto;width:21px;height:21px;border-radius:50%;
  background:var(--g);color:#fff;font-size:12px;font-weight:800;display:grid;place-items:center;}
+
+/* the install sequence: numbered, ruled, three columns of readable width */
+.sv2 .sv2-steps{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:1fr;
+ column-gap:38px;counter-reset:step;border-bottom:1px solid var(--line);}
+.sv2 .sv2-steps li{counter-increment:step;display:flex;gap:14px;align-items:baseline;
+ padding:14px 2px;border-top:1px solid var(--line);font-size:15.5px;line-height:1.45;color:var(--ink);}
+.sv2 .sv2-steps li::before{content:counter(step);flex:0 0 auto;min-width:20px;
+ font-size:13px;font-weight:800;color:var(--g);font-variant-numeric:tabular-nums;}
+@media(min-width:620px){.sv2 .sv2-steps{grid-template-columns:1fr 1fr;}}
+@media(min-width:940px){.sv2 .sv2-steps{grid-template-columns:repeat(3,1fr);}}
 
 /* specs: three plain groups, chips not cards */
 .sv2 .sv2-specs{display:grid;gap:clamp(26px,4vw,40px);grid-template-columns:1fr;}
@@ -292,8 +306,15 @@ def build(p, reviews, faq):
                     + picture(j["img"], H.escape(j["alt"]),
                               "(min-width:880px) 46vw, 92vw", eager=(i == 0))
                     + f'</figure><h3>{j["h"]}</h3><p>{H.escape(j["p"])}</p>{lst}</div>')
-    out.append(band('<div class="sv2-jobs">' + "".join(jobs) + "</div>"
-                    f'<p style="margin-top:26px">{H.escape(p["jobs_close"])}</p>'))
+    close = (f'<p style="margin-top:26px">{H.escape(p["jobs_close"])}</p>'
+             if p.get("jobs_close") else "")
+    out.append(band('<div class="sv2-jobs">' + "".join(jobs) + "</div>" + close))
+
+    if p.get("steps"):
+        out.append(band(
+            f'<h2>{H.escape(p["steps_h"])}</h2>'
+            '<ol class="sv2-steps">' + "".join(f"<li>{H.escape(x)}</li>" for x in p["steps"]) + "</ol>"
+            f'<p style="margin-top:24px">{H.escape(p["steps_close"])}</p>', tint=True))
 
     # 5. proof
     if reviews:
