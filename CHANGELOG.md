@@ -10,6 +10,22 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Simpler header, stronger calls to action
+
+- **The menu is now four items:** Home · Services · Brands · About. Service
+  Areas moved down to the footer (where location lists belong, and where
+  they still help local search), and the separate "Schedule Service" menu
+  item is gone — booking is now the button.
+- **The header ends with two buttons instead of a phone label:** a
+  tap-to-call button showing (832) 887-8747, and a green **Book Now**
+  button that goes straight to the booking page. Both are full-width and
+  side-by-side on phones.
+- **Rebuilt the mobile menu so it opens reliably** — it now opens and
+  closes on its own logic instead of depending on the old site's
+  interaction script, closes when you pick a link, tap outside, or press
+  Escape, and lists everything left-aligned with the call and Book Now
+  buttons at the bottom.
+
 ## 2026-08-14 — Schedule page rebuilt as a real booking page
 
 - **The scheduling page is now built to book jobs, not just describe them.**
