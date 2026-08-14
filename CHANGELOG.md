@@ -10,6 +10,18 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Removed a broken script request from every page
+
+Every page was asking the server for a Webflow tracking file that was never
+included in the export. The file does not exist, so all 36 pages made one
+request that failed on every single visit. It has been removed — nothing on the
+page looked at it or needed it.
+
+This is the first of a series of clean-up steps, each one reviewed and approved
+before it is made.
+
+---
+
 ## 2026-08-14 — Header menu reworked, and hidden sections brought into view
 
 **The menu.** The four items now sit to the left beside the logo instead of
