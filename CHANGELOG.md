@@ -10,6 +10,38 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Service-page copy broken into designed sections with photos
+
+The service pages carried long unbroken walls of text — a heading followed by
+a plain bulleted list, several times over. On a phone that reads as a scroll
+with nothing to hold on to. The words are unchanged; the layout around them
+is not:
+
+- **Real TML job photos placed beside the copy.** Each major section now sits
+  next to a photograph from TML's own library — a technician on a torsion
+  spring, a completed door install, a commercial bay, an operator being wired.
+  No stock photography and no AI-generated images: for a trade where customers
+  are afraid of being scammed, real crews on real jobs are the proof.
+- **Symptom lists now read as warning cards.** "Signs you need…" and "Common
+  problems…" bullets became two-column cards with a red alert badge, so a
+  visitor scanning for their own symptom finds it in a glance instead of
+  reading a paragraph-shaped list.
+- **"What's included" lists became green checklists**, two columns on desktop
+  and one on a phone, which reads as a promise of work delivered rather than
+  an inventory.
+- **Door and opener types became tiles**, and the residential page's door
+  styles now show photographs for the styles TML has pictures of, with the
+  remaining styles listed as tiles underneath — previously photos and
+  text-only entries were mixed in one grid, leaving ragged holes.
+- **Removed two duplicated blocks per page.** Each page repeated a "Why choose
+  us" section and a second, longer service-area list that the page already
+  covers in its own panels. Saying it twice does not make it truer, and the
+  duplicate city list was the kind of block search engines discount.
+- **Fixed text that displayed as code.** Apostrophes and ampersands in the
+  original copy were rendering as `won&#x27;t` and `&amp;` in some headings.
+
+---
+
 ## 2026-08-14 — The four main service pages rebuilt
 
 Spring repair, opener repair/installation, new door installation, and
