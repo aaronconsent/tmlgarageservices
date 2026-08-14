@@ -87,7 +87,16 @@ STYLE = ('<style id="tmlrev-css">'
          'padding:13px 26px;border-radius:999px;text-decoration:none;letter-spacing:.02em;'
          'box-shadow:0 8px 20px -8px rgba(46,63,23,.55);transition:transform .15s ease;}'
          '.tmlrev-btn:active{transform:scale(.97);}'
-         '.tmlrev-track{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}'
+         # auto-fit, not a fixed 3: this section also renders inside the ~854px
+         # article column on service pages, where 3 hard columns squeezed each
+         # card to ~143px wide and 1559px tall
+         '.tmlrev-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:18px;}'
+         # Two legacy Webflow rich-text rules leak into these cards: figures are
+         # capped at 60% width, and blockquotes carry 39px padding plus a border.
+         # Together they shrank each card to 156px wide and 1439px tall.
+         '.tmlrev .tmlrev-card{max-width:none!important;margin:0!important;}'
+         '.tmlrev blockquote{padding:0!important;border:0!important;margin:0 0 14px!important;'
+         'background:none!important;font-size:15px;line-height:1.55;color:#3d4436;}'
          '.tmlrev-card{margin:0;background:#fff;border:1px solid #e4e6dc;border-radius:16px;padding:22px;'
          'box-shadow:0 14px 30px -18px rgba(20,27,13,.35);display:flex;flex-direction:column;}'
          '.tmlrev-stars{color:#f5b301;letter-spacing:3px;font-size:17px;margin-bottom:10px;}'

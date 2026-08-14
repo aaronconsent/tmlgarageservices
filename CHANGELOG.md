@@ -10,6 +10,26 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Google reviews section repaired
+
+The Google reviews block on the service pages was rendering as a column of
+very narrow, extremely tall cards — unreadable, and the opposite of the
+credibility boost it is there to provide.
+
+- **Two leftover styles from the old site were squeezing the cards.** The old
+  theme caps quote boxes at 60% width and adds a thick inner border and 39px of
+  padding on every side. Applied to a review card sitting in the article
+  column, that left about 180px for the text, so each card stretched to over
+  1,500px tall. Both are now overridden inside the reviews block: **cards went
+  from 143px wide and 1,559px tall to 260px wide and 414px tall**, and the whole
+  section shrank from roughly 3,000px to 1,250px.
+- **The card grid now adapts to the space it has.** It was fixed at three
+  columns, which only works across the full page width. It now fits as many
+  columns as will comfortably hold a readable card, so the section works in the
+  narrower article column as well as full width.
+
+---
+
 ## 2026-08-14 — Page content no longer sits shifted to the left
 
 On the service pages the whole body of the page was pinned to the left with a
