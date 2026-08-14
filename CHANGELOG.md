@@ -10,6 +10,16 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — A share card that sells
+
+- **Sharing the site used to show a stock template avatar** (or no image at
+  all — the picture link was broken in a way sharing platforms ignore).
+  Every page now shares with a purpose-built card: the garage photo,
+  "Same-Day Garage Door Repair," the phone number front and center, a
+  "Call Now — We Answer" button, and the real 5.0★ / 213-review rating
+  with a customer quote. Texting or posting any page of the site is now a
+  little advertisement.
+
 ## 2026-08-14 — Page structure for search engines
 
 - **Every page now has exactly one main headline.** Service pages had 4–5
