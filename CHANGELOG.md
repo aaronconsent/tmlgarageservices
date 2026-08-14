@@ -10,6 +10,12 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Homepage: Contact Us upgraded to a button
+
+- In the green "Garage Door Repair &amp; Installation Services" section,
+  the "Contact Us" text link is now a white button (desktop and mobile) —
+  much more visible against the green background.
+
 ## 2026-08-14 — Every image described for Google and accessibility
 
 - **253 photos had no description (alt text)** — invisible to screen
