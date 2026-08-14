@@ -77,12 +77,15 @@ SERVICE_SCHEMA = (
 STYLE = """<style id="tmlbook-css">
 .tb{--g:#587735;--gd:#3f5a22;--ink:#1f2418;--mut:#5c6553;--line:#e2e5d9;}
 .tb *{box-sizing:border-box;}
-.tb-hero{background:#587735;color:#fff;padding:44px 0 40px;}
+.tb-hero{position:relative;color:#fff;padding:60px 0 56px;background:#3f5a22 url('/assets/66b2dae9e779df43d0d269c9/66b5115cc6a1fdc1f8b546d6_modern-garage-door-services.jpg') center/cover no-repeat;}
+.tb-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.5) 0%,rgba(0,0,0,.25) 55%,rgba(0,0,0,.1) 100%);}
+.tb-hero .tb-wrap{position:relative;}
+.tb-hero-box{background:rgba(0,0,0,.55);border-radius:10px;padding:24px 24px 22px;max-width:660px;}
 .tb-wrap{width:min(100% - 36px,1180px);margin:0 auto;}
-.tb-hero h1{font-size:clamp(30px,5vw,50px);line-height:1.05;margin:0 0 14px;max-width:20ch;}
-.tb-hero p.lede{font-size:clamp(16px,2vw,19px);line-height:1.5;max-width:56ch;margin:0 0 22px;color:#eef3e6;}
+.tb-hero h1{font-size:clamp(30px,5vw,50px);line-height:1.05;margin:0 0 14px;max-width:20ch;color:#fff!important;}
+.tb-hero p.lede{font-size:clamp(16px,2vw,19px);line-height:1.5;max-width:56ch;margin:0 0 20px;color:#eef3e6;}
 .tb-trust{display:flex;flex-wrap:wrap;gap:10px 26px;padding:0;margin:0;list-style:none;}
-.tb-trust li{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;}
+.tb-trust li{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:#fff;white-space:nowrap;}
 .tb-trust li::before{content:"✓";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#cfe84d;color:#1f2418;font-size:13px;font-weight:800;}
 .tb-hero-stars{color:#ffd35c;letter-spacing:2px;}
 .tb-main{padding:38px 0 10px;}
@@ -142,6 +145,7 @@ STYLE = """<style id="tmlbook-css">
 .tb-final h2{margin:0;font-size:clamp(22px,3.4vw,30px);}
 .tb-final p{margin:6px 0 0;color:#cfd6c4;font-size:15.5px;}
 .tb-final .acts{display:grid;gap:10px;}
+@media(max-width:600px){.tb-hero{padding:34px 0 32px;}.tb-hero-box{padding:18px 16px;}}
 @media(min-width:860px){
  .tb-grid{grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);align-items:start;}
  .tb-side{position:sticky;top:100px;}
@@ -211,7 +215,8 @@ BODY = f"""
 <div class="tb">
 <section class="tb-hero">
   <div class="tb-wrap">
-    <h1>Book your garage door service online</h1>
+    <div class="tb-hero-box">
+    <h1>Book online now</h1>
     <p class="lede">Pick a time that works for you — most jobs are booked same-day, including weekends at no extra charge.
     A trained, insured technician arrives and quotes the full price before any work starts.</p>
     <ul class="tb-trust">
@@ -220,6 +225,7 @@ BODY = f"""
       <li>No weekend surcharge</li>
       <li>Upfront pricing</li>
     </ul>
+    </div>
   </div>
 </section>
 
