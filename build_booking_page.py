@@ -253,38 +253,7 @@ BODY = f"""
           <li>100% satisfaction guaranteed</li>
         </ul>
       </div>
-      <div class="tb-card">
-        <h3>Garage door tune-up</h3>
-        <div class="tb-price"><b>$69</b><span>complete tune-up &amp; safety inspection</span></div>
-        <ul class="tb-mini">
-          <li>Full inspection of the door system</li>
-          <li>Spring balancing &amp; tension adjustment</li>
-          <li>Roller, cable, track &amp; hinge inspection</li>
-          <li>Lubrication and safety test</li>
-        </ul>
-      </div>
-      <div class="tb-card">
-        <h3>Financing available</h3>
-        <p>Renovate now, pay later. Contact us for your soft-pull pre-approval — it only takes a few minutes.</p>
-      </div>
     </aside>
-  </div>
-</section>
-
-<section class="tb-steps">
-  <div class="tb-wrap">
-    <h2>What happens after you book</h2>
-    <div class="tb-steplist">
-      <div class="tb-step"><b>Pick your time</b><span>Choose the appointment window that fits your schedule — weekends included, at no extra charge.</span></div>
-      <div class="tb-step"><b>We confirm</b><span>Our team reaches out to lock in your arrival window and answer any questions before we head out.</span></div>
-      <div class="tb-step"><b>We fix it right</b><span>Your technician diagnoses the problem and gives you the full price before starting. No surprises.</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="tb-steps" style="padding-top:14px;">
-  <div class="tb-wrap">
-    <!--tmlrev--><!--/tmlrev-->
   </div>
 </section>
 

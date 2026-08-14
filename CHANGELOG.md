@@ -22,11 +22,11 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
   automatic tracking of which ad or campaign each booking came from. Until
   then, the page books through the existing online calendar and call/text,
   so it's converting today.
-- **Added the parts that turn visitors into booked jobs:** a "what happens
-  after you book" walkthrough (removes the anxiety of booking blind), the
-  real Google reviews, and answers to the five questions people ask before
-  scheduling — cost, speed, weekends, what happens next, financing. Those
-  answers are also marked up so Google and AI assistants can quote them.
+- **Kept the page focused on one action.** Booking and the phone number are
+  the only things competing for attention, followed by answers to the five
+  questions people ask before scheduling — cost, speed, weekends, what
+  happens next, financing. Those answers are marked up so Google and AI
+  assistants can quote them.
 
 ## 2026-08-14 — Reviews restyled as a credibility showcase
 
