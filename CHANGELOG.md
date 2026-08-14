@@ -10,6 +10,24 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Schedule page rebuilt as a real booking page
+
+- **The scheduling page is now built to book jobs, not just describe them.**
+  It opens with what matters to someone with a broken door (same-day, no
+  weekend surcharge, upfront pricing, 5.0 from 213 Google reviews), then
+  puts booking front and center with the phone number and a $69 tune-up
+  offer alongside it.
+- **Ready for Workiz Online Booking.** The booking panel is wired to drop in
+  TML's Workiz scheduler the moment the account is connected — including
+  automatic tracking of which ad or campaign each booking came from. Until
+  then, the page books through the existing online calendar and call/text,
+  so it's converting today.
+- **Added the parts that turn visitors into booked jobs:** a "what happens
+  after you book" walkthrough (removes the anxiety of booking blind), the
+  real Google reviews, and answers to the five questions people ask before
+  scheduling — cost, speed, weekends, what happens next, financing. Those
+  answers are also marked up so Google and AI assistants can quote them.
+
 ## 2026-08-14 — Reviews restyled as a credibility showcase
 
 - **The review sections are now a proper selling moment.** A large "5.0"
