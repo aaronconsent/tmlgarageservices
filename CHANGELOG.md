@@ -10,6 +10,43 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Opener page rebuilt around how people actually shop
+
+The garage door opener page has been rebuilt from the ground up between the
+banner and the footer. **Every word of the existing copy is still on the page** —
+what changed is the order it appears in and how it is presented.
+
+The old page opened with a general description of the company and worked its way
+toward the useful parts. The new one answers questions in the order a homeowner
+with a broken door actually asks them:
+
+1. **"Is this what mine is doing?"** — the list of twelve opener symptoms now
+   sits near the top, in three scannable columns, so a visitor finds their exact
+   problem in seconds instead of scrolling past sales copy. Call, text and
+   booking buttons sit directly underneath it.
+2. **"What is this going to cost me?"** — the pricing promise comes next, before
+   any selling. Being upfront about pricing early is what separates you from the
+   companies people are afraid of hiring.
+3. **"What does the job involve?"** — repair and replacement side by side, each
+   with a real photograph of your own technicians at work.
+4. **Proof** — the 5.0 rating from 213 Google reviews.
+5. **The detail** — opener types, features and brands, lower down where the
+   person doing research will find them without slowing down the person whose
+   door is stuck.
+6. **Why customers choose TML**, the FAQ, service area, and one clear closing
+   call to action.
+
+Presentation notes: the content column is centred with generous line spacing,
+section backgrounds alternate so each part reads as a distinct answer, and the
+symptom list uses simple ruled rows rather than boxes so twelve items stay
+readable. On a phone everything stacks to one column with nothing cut off, and
+the call/text bar stays fixed at the bottom.
+
+This is the first of the four service pages, built for review before the same
+treatment is applied to the others.
+
+---
+
 ## 2026-08-14 — Service pages no longer sit against the left edge
 
 The service pages were built as two columns: the article on the left and a
