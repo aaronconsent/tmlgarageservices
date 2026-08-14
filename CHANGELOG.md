@@ -10,6 +10,19 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Cleaner homepage banner
+
+- **Removed the "☎ CALL NOW / 832-887-8747" box** from the top-left of the
+  homepage banner — the phone number is now in the header button, the
+  banner button, and (on phones) the bottom Call bar, so the floating box
+  was a fourth copy competing with them.
+- **The banner text now sits in the same semi-transparent black panel**
+  used elsewhere on the site, at every screen size — previously it was
+  white-on-white over the video on larger screens and only readable on
+  phones.
+- **Moved the red Emergency Service button to the right side** so it no
+  longer sits on top of the banner text and buttons.
+
 ## 2026-08-14 — Simpler header, stronger calls to action
 
 - **The menu is now four items:** Home · Services · Brands · About. Service
