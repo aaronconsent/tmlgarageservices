@@ -126,6 +126,9 @@ def rewrite(html: str) -> str:
     html = html.replace(f'href="{BASE}/', 'href="/').replace(f'href="{BASE}"', 'href="/"')
     # the live site has two internal links with a stray space in the path
     html = re.sub(r'href="(/[^"]*?) +([^" ]*)"', r'href="\1\2"', html)
+    # keep the mirror out of search indexes until the domain cutover
+    if 'name="robots"' not in html:
+        html = html.replace("<head>", '<head><meta name="robots" content="noindex, nofollow">', 1)
     return html
 
 for path, html in pages.items():
