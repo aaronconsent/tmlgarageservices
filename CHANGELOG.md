@@ -10,6 +10,16 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Every image described for Google and accessibility
+
+- **253 photos had no description (alt text)** — invisible to screen
+  readers and to Google Images. All now have descriptions: we hand-wrote
+  accurate ones for the key photos (looking at each image — e.g. "TML
+  technician adjusting a garage door torsion spring," "TML-branded garage
+  door torsion springs"), and derived the rest from their filenames.
+- **Removed image references that pointed at files that don't exist** — a
+  silent error on every page load, inherited from the original site.
+
 ## 2026-08-14 — Mobile rework: one clean way to reach you
 
 - **A Call / Text bar now sits at the bottom of every page on phones** — two
