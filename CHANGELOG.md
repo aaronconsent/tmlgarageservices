@@ -10,6 +10,27 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Real Google reviews, baked into the site
+
+- **Your reviews were being hidden.** Seven "Clients Review" sections loaded
+  third-party widgets (Trustmary, Elfsight) that were over their free
+  limits — visitors saw "Site owner: upgrade your plan" instead of reviews.
+  Meanwhile the business has a **5.0-star rating from 213 Google reviews**.
+- **Now the reviews are part of the page itself.** All seven sections show
+  "Rated 5.0 ★ from 213 Google reviews," six real recent reviews (with
+  reviewer names and dates, naming your technicians), and a link to read
+  all 213 on Google. Because they're written into the page — not loaded by
+  a widget — Google and AI search engines (ChatGPT, AI Overviews,
+  Perplexity) can actually read and quote them, they load instantly, and
+  nothing can ever expire or nag again.
+- **Added business schema on every page.** Structured data now tells search
+  engines exactly who the business is: name, phone, address, service area,
+  and the 5.0/213 rating. The old site had none of this.
+- **Refreshing is one command** (re-pulls the latest reviews for about five
+  cents) — we can put it on a monthly schedule.
+- *Owner: the six featured reviews were auto-picked (recent, detailed,
+  5-star). Happy to swap in any favorites.*
+
 ## 2026-08-14 — Dead links: removed the old ones, built the missing pages
 
 - **Removed 140 links to deleted home-improvement pages.** The menus and
