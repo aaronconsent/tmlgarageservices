@@ -10,6 +10,27 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — The booking form now sits on the pages themselves
+
+The six pages that used to carry the broken contact form were given a panel
+linking through to the booking page. They now carry **the booking form itself** —
+choose the problem, pick a day, pick an arrival window, leave your details —
+so nobody has to click through to another page to book.
+
+It appears on the home page, the contact page, and all four opener brand pages.
+The form is taken from the booking page when the site is built, so there is one
+version to maintain: change it there and every page follows.
+
+Two things fixed to make it fit: the two-column layouts on these pages never
+stacked on a phone, which squeezed the form into about 205px of a 375px screen;
+and the three arrival windows were being crushed side by side with their times
+wrapping mid-line. Both now behave on a phone.
+
+As before, this is still the prototype flow — it collects everything and shows a
+confirmation, and will push to Workiz once the account is connected.
+
+---
+
 ## 2026-08-14 — Last of the Webflow leftovers cleared out
 
 Nothing visible changed here. This was the final sweep for traces of the old
