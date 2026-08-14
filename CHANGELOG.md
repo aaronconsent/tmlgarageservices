@@ -10,6 +10,17 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Contact page headline repaired
+
+- **The contact page's main headline was a full paragraph that cut off
+  mid-word** — it ended "…or a routine maintena" (the text was truncated in
+  the original site's content, not a display glitch). The headline is now
+  the first sentence — "TML Garage Door Services is here to help." — with
+  the rest as normal text below, and the cut-off sentence completed:
+  "Whether it's an emergency repair or routine maintenance, we're ready to
+  help." *Owner: we finished that sentence for you — happy to change the
+  wording if you had something else in mind.*
+
 ## 2026-08-14 — Real Google reviews, baked into the site
 
 - **Your reviews were being hidden.** Seven "Clients Review" sections loaded
