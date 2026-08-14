@@ -10,6 +10,28 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Page content no longer sits shifted to the left
+
+On the service pages the whole body of the page was pinned to the left with a
+wide empty band down the right-hand side. The cause was a single missing
+closing tag in the page's HTML.
+
+- **The "Our Services" sidebar had been swallowed by the main column.** These
+  pages are built as two columns — the article on the left, the service list on
+  the right. One tag left unclosed by an earlier edit put the sidebar *inside*
+  the article column instead of beside it. Browsers do not report this; they
+  quietly repair it and carry on, which is why the page still looked
+  reasonable — just narrow, left-aligned, with the service list stranded at the
+  bottom.
+- **Fixed on all nine affected pages** — the seven service pages, the services
+  hub and the booking page. The sidebar is back alongside the content and the
+  page fills the width again.
+- The tool that made the original edit has been corrected, and a check now runs
+  at the end of every build so a page can no longer be published with an
+  unclosed tag.
+
+---
+
 ## 2026-08-14 — Images fixed and the whole site made 9x lighter
 
 A polish pass over the service pages turned up one broken image and one much

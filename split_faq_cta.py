@@ -100,7 +100,12 @@ for f in sorted(F.glob("*/index.html")):
             cta_end = nxt.start() + btn_m.end()
             n["ctas"] += 1
 
-    h = h[:start] + faq_html + cta_html + h[cta_end:]
+    # the cut region carried closing </div>s (it ended inside the old CTA's
+    # wrapper); the replacement is self-balanced, so re-emit whatever it closed
+    # or the page ends up with an unclosed <div> and the sidebar gets swallowed
+    cut = h[start:cta_end]
+    orphan_closers = cut.count("</div>") - len(re.findall(r"<div\b", cut))
+    h = h[:start] + faq_html + cta_html + "</div>" * max(0, orphan_closers) + h[cta_end:]
     n["faqs"] += 1
 
     # ---- 3. FAQPage schema (search + AI engines can quote these) -------
