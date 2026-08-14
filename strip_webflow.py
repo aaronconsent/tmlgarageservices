@@ -17,6 +17,7 @@ F = ROOT / "site" / "fixed"
 # steps the owner has signed off on, in the order they were approved
 APPROVED = [
     "dead-script",
+    "self-host-fonts",
 ]
 
 
@@ -24,6 +25,29 @@ def dead_script(html):
     """A Webflow tracking stub that was never exported: the path 404s on every
     page load. Nothing reads it, nothing depends on it."""
     return re.subn(r'<script[^>]+src="/g0lnomhfn3mg[^"]*"[^>]*>\s*</script>', "", html)
+
+
+FONT_LINK = ('<link rel="preload" href="/assets/fonts/Inter-400-latin.woff2" as="font" '
+             'type="font/woff2" crossorigin>'
+             '<link rel="preload" href="/assets/fonts/BebasNeue-400-latin.woff2" as="font" '
+             'type="font/woff2" crossorigin>'
+             '<link rel="stylesheet" href="/assets/fonts/fonts.css">')
+
+
+def self_host_fonts(html):
+    """Drop the Google WebFont loader for a local stylesheet.
+
+    The loader pulled a script from ajax.googleapis.com which then requested six
+    families at every weight — about 36 font files' worth — for the four faces
+    the site renders. It is render-blocking, so text waited on a third-party
+    round-trip. The replacement serves the same faces from this site."""
+    n = 0
+    html, a = re.subn(r'<script[^>]+src="https://ajax\.googleapis\.com/ajax/libs/webfont/[^"]*"[^>]*>\s*</script>', "", html)
+    html, b = re.subn(r'<script[^>]*>\s*WebFont\.load\(.*?\);?\s*</script>', "", html, flags=re.S)
+    n += a + b
+    if n and "/assets/fonts/fonts.css" not in html:
+        html = html.replace("</head>", FONT_LINK + "</head>", 1)
+    return html, n
 
 
 def last_published(html):
@@ -42,6 +66,7 @@ STEPS = {
     "dead-script": ("dead 404 script tag", dead_script),
     "last-published": ("Last Published comment", last_published),
     "wf-identifiers": ("data-wf-* identifiers", wf_identifiers),
+    "self-host-fonts": ("Google WebFont loader -> self-hosted", self_host_fonts),
 }
 
 

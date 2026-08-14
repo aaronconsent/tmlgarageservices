@@ -10,6 +10,21 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Fonts now served from your own site
+
+Every page was loading a script from Google that then went and fetched six
+typeface families at every available weight — around 36 font files' worth — when
+the site only ever displays four of them. Worse, it was a blocking request: text
+could not appear until Google answered.
+
+The four typefaces the site actually uses are now served from your own site, in
+only the weights that appear on screen. **The fonts look exactly the same** —
+this is purely about where they come from and how many are fetched. Two side
+effects worth having: pages start showing text sooner, and visitors are no longer
+being pinged to a third-party server just to read your site.
+
+---
+
 ## 2026-08-14 — Removed a broken script request from every page
 
 Every page was asking the server for a Webflow tracking file that was never

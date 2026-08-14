@@ -34,6 +34,10 @@
 <p>A running record of every repair made to the "Fixed" version of the site (<code>/fixed/</code>), kept for the site owner. The "Original" version is an untouched copy of the current live website; use the switcher on the left edge of any page to compare the two, page by page.</p>
 <p>Format: each entry says <strong>what</strong> was wrong, <strong>where</strong>, <strong>what changed</strong>, and <strong>why it matters</strong>.</p>
 <hr>
+<h2>2026-08-14 — Fonts now served from your own site</h2>
+<p>Every page was loading a script from Google that then went and fetched six typeface families at every available weight — around 36 font files' worth — when the site only ever displays four of them. Worse, it was a blocking request: text could not appear until Google answered.</p>
+<p>The four typefaces the site actually uses are now served from your own site, in only the weights that appear on screen. <strong>The fonts look exactly the same</strong> — this is purely about where they come from and how many are fetched. Two side effects worth having: pages start showing text sooner, and visitors are no longer being pinged to a third-party server just to read your site.</p>
+<hr>
 <h2>2026-08-14 — Removed a broken script request from every page</h2>
 <p>Every page was asking the server for a Webflow tracking file that was never included in the export. The file does not exist, so all 36 pages made one request that failed on every single visit. It has been removed — nothing on the page looked at it or needed it.</p>
 <p>This is the first of a series of clean-up steps, each one reviewed and approved before it is made.</p>
