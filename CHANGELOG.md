@@ -10,6 +10,26 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — A working contact form, feeding straight into Workiz
+
+The home page, contact page and the four opener brand pages now carry your
+Workiz service-request form: name, phone, email, and what the problem is.
+**Submissions go into the same Workiz account as your online bookings**, so
+enquiries and booked jobs arrive in one place rather than two.
+
+This replaces the prototype form that was standing in on those pages. The
+booking page keeps the full booking widget, where a customer picks a service, a
+day and a time — a short enquiry form suits the other pages better than asking
+someone to schedule before they have even described the problem.
+
+Underneath each form there is still a Call, a Text, and a "Pick a time" link for
+anyone who would rather not type.
+
+Worth restating plainly: **before today, the form on these pages went nowhere.**
+Anything sent through it was lost without the sender knowing. That is now fixed.
+
+---
+
 ## 2026-08-14 — Booking widget framed to fit the page
 
 The Workiz booking widget now sits in a proper frame rather than floating on the
