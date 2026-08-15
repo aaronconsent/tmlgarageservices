@@ -10,6 +10,72 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-15 — A real blog, in place of the template's
+
+- **Removed eight articles that were not about garage doors.** The site carried
+  posts on concrete, fencing, sustainable construction, windows, historic
+  restoration, foundations and air conditioning. They came with the Webflow
+  template: real-looking headlines with placeholder Latin text underneath.
+  Twenty-four links around the site pointed at them.
+- **Published five articles instead**, on the questions people actually ask
+  before they call: what spring replacement costs, why a door will not close,
+  whether to repair or replace, what Gulf Coast heat and humidity do to the
+  hardware, and how to choose between belt and chain drive openers. Each one
+  links through to the matching service page.
+- **No prices are attributed to TML anywhere in them.** The cost article quotes
+  published national ranges and says plainly that they are national ranges. If
+  you want your own figures in there, send them over and they go in.
+- **The blog has an index page and a link in the footer.** Previously the posts
+  linked only to each other, so nothing on the site led to them.
+- **Photo captions describe the photo.** Several images across the site are
+  labelled as garage door work when they show something else — four of them are
+  kitchen remodels from TML Home Improvement. Every image on the new pages was
+  opened and captioned by what is actually in it.
+
+## 2026-08-15 — Pre-launch sweep
+
+- **Page titles shortened.** Nineteen ran past what Google displays, up to 116
+  characters, so the city was being cut off — the part a local searcher looks
+  for. Every title now leads with the service, then the city, then the business
+  name, under 65 characters.
+- **Eight page descriptions rewritten**, three that were too short to say
+  anything and five long enough to be truncated in results.
+- **Forty-four links that went nowhere.** All of them were `href="#"`, which
+  jumps to the top of the page and reads as a broken site. Thirty-seven were the
+  Angi badge (now shown as a plain image — send the profile URL and it becomes a
+  link again), three were the old company's email address on the project pages,
+  two were an "Explore Portfolio" button sitting next to "View All Services",
+  and the last two were a Contact button and a privacy policy reference.
+- **The share image pointed at the staging address.** Every link shared to
+  Facebook, LinkedIn or a text message would have shown a broken preview once
+  staging goes away. It now points at tmlgarageservices.com.
+- **Added robots.txt and sitemap.xml.** The site had neither. The sitemap lists
+  the 26 pages meant to be found and deliberately omits the rest.
+- **The four placeholder staff pages are now hidden permanently.** "Darrell
+  Steward", "Esther Howards", "Jerome Bell" and "Kristin Watson" are the Webflow
+  template's stock names, presented as your Founder, Co-Founder, Managing
+  Director and Sales Manager. They are blocked from search engines in a way that
+  survives launch day, and left out of the sitemap. The four kitchen remodel
+  project pages are hidden the same way. Deleting them outright is your call.
+- **The logo was set to load last.** It is the first thing on the page, and the
+  browser was deferring it — so the header had no height until it arrived and
+  then jumped down. Now loaded first, with its space reserved.
+- **The hero video's pause button could not be pressed.** It was in the page at
+  zero pixels wide. A video that plays by itself needs a working pause control;
+  it is now a real button.
+- **Touch targets on phones.** The carousel and review dots were 8-pixel targets
+  set 7 pixels apart. The dots look the same but can now actually be hit. Social
+  icons went from 30 to 44 pixels, and the footer links are tall enough to press.
+- **Small text enlarged.** "Explore Services", "View More" and the footer legal
+  row were set at 12px.
+- **The booking page had three headings in a row** — "Book online now",
+  "Schedule your appointment", then the widget's own "Schedule Garage Door
+  Services". Ours is gone; the reassurance line under it stays.
+- **The mobile menu overflowed on twelve pages**, pushing the page sideways.
+  Those pages were carrying an older copy of the header styling.
+
+---
+
 ## 2026-08-14 — One business name, and the trust badges moved up the page
 
 **The company name was written six different ways.** Across page titles, social
