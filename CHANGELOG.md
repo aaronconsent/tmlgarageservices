@@ -10,6 +10,34 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — One business name, and the trust badges moved up the page
+
+**The company name was written six different ways.** Across page titles, social
+preview tags, body copy and image descriptions the site said "T.M.L. Garage
+Services", "TML Garage Services", "TML Garage DOOR Services", "TML garage DOOR
+services" and others. **129 of them across 17 pages now read TML Garage Door
+Services.** A business whose own name is written six ways looks careless, and
+search engines treat a consistent name as a signal for local ranking.
+
+Left alone deliberately: the web address, e-mail addresses and links — those are
+not the name, and changing them would break things. Also left alone: the kitchen
+project pages, which credit TML Home Improvement. That was the business that did
+that work, and rewriting it would claim garage door work that was not garage door
+work. Those pages are still worth a conversation, as they are not about garage
+doors at all.
+
+One thing that was wrong rather than just inconsistent: the photograph of your
+Conroe location was described to screen readers as "TML Home Improvement 1488
+Conroe Texas". It now names the current business.
+
+**The Angi and HomeAdvisor badges now also appear inside "Why Choose TML Garage
+Door Services".** They were only at the very bottom of the page, below where most
+visitors ever scroll — now they sit with the argument they support. They are on
+white tiles because the badges have see-through backgrounds and that section is
+black; dropped in as-is they would have been nearly invisible.
+
+---
+
 ## 2026-08-14 — A working contact form, feeding straight into Workiz
 
 The home page, contact page and the four opener brand pages now carry your
