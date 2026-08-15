@@ -52,21 +52,34 @@ OLD_POSTS = [
     "understanding-heating-ventilation-and-air-conditioning-in-construction",
 ]
 
+# Each entry is (path, alt, object-position). Every alt was written after opening
+# the file: the site already carries alt text that describes something other than
+# what is in the picture, and repeating that habit in new pages helps nobody.
+# The focus value matters because these crop to a wide card — a square photo of a
+# house centre-crops onto the roof, which is how the first build shipped a row of
+# apparently blank cards.
 IMG = {
-    "repair": ("/assets/66b2dae9e779df43d0d269c9/66b2ec2555069ca418a48646_"
-               "garage-door-repair-and-installer.png",
-               "TML technician servicing a residential garage door"),
-    "work": ("/assets/66b2dae9e779df43d0d269c9/6a54211784c18aea72a3603c_IMG_2909.jpg",
-             "Garage door track and rollers during a service call"),
-    "install": ("/assets/66b2dae9e779df43d0d269c9/66b2ec2561b760fe6fee299b_"
-                "549fbd18a3bc84b4e30fc12d9d7d4ccb_new-garage-door-service-install-conroe.png",
-                "Newly installed garage door on a Conroe home"),
+    "springs": ("/assets/66b2dae9e779df43d0d269c9/6a54211784c18aea72a3603c_IMG_2909.jpg",
+                "Three TML Garage Door Services technicians holding replacement "
+                "torsion springs above their heads",
+                "center 34%"),
+    "house": ("/assets/66b2dae9e779df43d0d269c9/66b2ec2555069ca418a48646_"
+              "garage-door-repair-and-installer.png",
+              "A closed white double garage door on a suburban home",
+              "center 78%"),
     "dusk": ("/assets/66b2dae9e779df43d0d269c9/6a6638dbf310548aa6535691_"
              "copy_AE586C56-1DE3-4700-978C-82BBC75C202F_poster.0000000.jpg",
-             "Modern home with a dark sectional garage door at dusk"),
+             "Modern home with a dark sectional garage door at dusk",
+             "center 55%"),
+    "crew": ("/assets/66b2dae9e779df43d0d269c9/66b2ec2561b760fe6fee299b_"
+             "549fbd18a3bc84b4e30fc12d9d7d4ccb_new-garage-door-service-install-conroe.png",
+             "TML Garage Door Services technicians standing beside a company "
+             "service truck",
+             "center 40%"),
     "opener": ("/assets/66b2dae9e779df43d0d269c9/6a542e2ec6b8791b21582f07_"
                "Photo%20Jul%2012%202026%2C%207%2009%2027%20PM%20(2)%20(1).png",
-               "TML technician installing a LiftMaster garage door opener"),
+               "TML technician adjusting the rail on a LiftMaster garage door opener",
+               "center 38%"),
 }
 
 CTA = (
@@ -83,7 +96,7 @@ POSTS = [
         "meta": "What garage door spring replacement typically costs, why springs are "
                 "replaced in pairs, and why torsion springs are not a DIY job.",
         "date": "Jul 8, 2026",
-        "img": "repair",
+        "img": "springs",
         "excerpt": "Published cost guides put a single spring in the low hundreds and a "
                    "pair higher still. Here is what you are actually paying for.",
         "body": """
@@ -160,7 +173,7 @@ replacement page</a> walks through it.</p>
         "meta": "The seven usual causes when a garage door refuses to close, in the order "
                 "worth checking, and the point at which to stop and call someone.",
         "date": "Jul 15, 2026",
-        "img": "work",
+        "img": "house",
         "excerpt": "Most of the time it is the safety sensors, and most of the time you "
                    "can fix that yourself in five minutes.",
         "body": """
@@ -236,7 +249,7 @@ If you get that far down the list, leave the door where it is.</p>
         "meta": "How long garage doors and openers last, the signs that point to "
                 "replacement rather than another repair, and how to weigh the two.",
         "date": "Jul 22, 2026",
-        "img": "install",
+        "img": "dusk",
         "excerpt": "Doors last decades; openers do not. Here is how to tell which one "
                    "you are actually dealing with.",
         "body": """
@@ -305,7 +318,7 @@ installation page</a> covers what the visit involves.</p>
         "meta": "How Gulf Coast heat, humidity and storms wear garage door hardware, and "
                 "a short seasonal maintenance routine for Conroe-area homes.",
         "date": "Jul 29, 2026",
-        "img": "dusk",
+        "img": "crew",
         "excerpt": "Steel expands, grease thins, wood swells and springs rust. Twenty "
                    "minutes twice a year covers most of it.",
         "body": """
@@ -479,6 +492,9 @@ CARD_CSS = """<style id="tmlblog-css">
 .tmlblog-card a{display:flex;flex-direction:column;height:100%;text-decoration:none;
  color:inherit;}
 .tmlblog-card img{display:block;width:100%;height:190px;object-fit:cover;}
+.blog-main-img img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;
+ border-radius:14px;}
+@media(max-width:600px){.blog-main-img img{aspect-ratio:4/3;}}
 .tmlblog-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:9px;flex:1;}
 .tmlblog-date{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#6d7563;}
 .tmlblog-card h2{font-size:20px;line-height:1.3;margin:0;}
@@ -508,7 +524,7 @@ def head_for(html, title, desc, url):
 def post_html(prefix, suffix, post, others):
     url = f"{LIVE}/blogs/{post['slug']}"
     head = head_for(prefix, post["title"], post["meta"], url)
-    src, alt = IMG[post["img"]]
+    src, alt, focus = IMG[post["img"]]
     related = "".join(
         f'<li><a href="/fixed/blogs/{o["slug"]}">{esc(o["title"])}</a></li>' for o in others)
     return (
@@ -519,7 +535,8 @@ def post_html(prefix, suffix, post, others):
           '<div class="news-data"><div class="body-x-small">'
           f'{post["date"]}</div></div></div>'
           f'<div class="blog-main-img"><img src="{src}" alt="{esc(alt)}" loading="eager" '
-          'decoding="async" class="blog-image"/></div></div></div></section>'
+          f'decoding="async" class="blog-image" style="object-position:{focus}"/></div>'
+          "</div></div></section>"
         + '<section class="rich-section"><div class="w-layout-blockcontainer container '
           'w-container"><div class="rich-wrap"><div class="rich-text w-richtext">'
         + post["body"].strip()
@@ -536,10 +553,11 @@ def index_html(prefix, suffix):
                     "repair versus replacement, Texas heat and opener choice.", url)
     cards = []
     for p in POSTS:
-        src, alt = IMG[p["img"]]
+        src, alt, focus = IMG[p["img"]]
         cards.append(
             f'<li class="tmlblog-card"><a href="/fixed/blogs/{p["slug"]}">'
-            f'<img src="{src}" alt="{esc(alt)}" loading="lazy" decoding="async"/>'
+            f'<img src="{src}" alt="{esc(alt)}" loading="lazy" decoding="async" '
+            f'style="object-position:{focus}"/>'
             f'<div class="tmlblog-body"><div class="tmlblog-date">{p["date"]}</div>'
             f'<h2>{esc(p["title"])}</h2><p>{esc(p["excerpt"])}</p>'
             f'<div class="tmlblog-more">Read this &rarr;</div></div></a></li>')
