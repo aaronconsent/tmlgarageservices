@@ -589,7 +589,7 @@ window.TML_WORKIZ = {
   var slot = document.getElementById("tmlbook-slot");
   if (!slot) return;
   var override = new URLSearchParams(location.search).get("workiz");  // ?workiz=TOKEN to preview
-  var account = override || cfg.account;
+  var account = override || window.TML_WORKIZ_ACCOUNT || cfg.account;  // per-page opt-in
   if (!account) return;                          // keep the fallback panel
 
   /* attribution: carry the visitor's campaign into the booking record */

@@ -10,6 +10,22 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Real Workiz booking live on the booking page
+
+The booking page now shows **your actual Workiz online booking widget** instead
+of the prototype. A booking made here goes straight into Workiz.
+
+It is switched on for that one page only. The six other pages carrying the
+booking form still show the prototype, so the live widget can be tried properly
+before it goes everywhere. Turning on the rest is a one-line change once you are
+happy with it.
+
+One useful detail: where a visitor came from is passed to Workiz with the
+booking, so bookings arriving from Google Ads, Facebook, or a direct visit are
+distinguishable in your Workiz records.
+
+---
+
 ## 2026-08-14 — The booking form now sits on the pages themselves
 
 The six pages that used to carry the broken contact form were given a panel
