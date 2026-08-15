@@ -10,6 +10,28 @@ Format: each entry says **what** was wrong, **where**, **what changed**, and
 
 ---
 
+## 2026-08-14 — Booking widget framed to fit the page
+
+The Workiz booking widget now sits in a proper frame rather than floating on the
+page.
+
+- **On a phone it was getting 309px of a 375px screen**, because the panel and
+  the frame each added their own margin. It now runs edge to edge, and is sized
+  to the height of the screen — before, the first step was a small card adrift in
+  about 500px of empty grey, with a scrollbar inside a scrollbar underneath.
+- **On a desktop** it is a little wider, in a clean white card with a rounded
+  border, and the "Need it today?" panel beside it now travels down with you
+  instead of leaving a tall gap.
+
+**One honest limit.** The widget itself belongs to Workiz and is loaded from
+their servers. Its fonts, colours, buttons and wording cannot be changed from
+this site — browsers do not allow one site to restyle another's, and Workiz does
+not offer a hook for it. Anything inside that box is changed in your Workiz
+account settings, where they offer branding options. Everything around it is
+ours, and that is what has been tidied.
+
+---
+
 ## 2026-08-14 — Real Workiz booking live on the booking page
 
 The booking page now shows **your actual Workiz online booking widget** instead
