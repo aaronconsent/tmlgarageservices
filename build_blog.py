@@ -492,9 +492,24 @@ CARD_CSS = """<style id="tmlblog-css">
 .tmlblog-card a{display:flex;flex-direction:column;height:100%;text-decoration:none;
  color:inherit;}
 .tmlblog-card img{display:block;width:100%;height:190px;object-fit:cover;}
-.blog-main-img img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;
- border-radius:14px;}
-@media(max-width:600px){.blog-main-img img{aspect-ratio:4/3;}}
+.blog-main-img img{display:block;width:100%;aspect-ratio:16/9;max-height:430px;
+ object-fit:cover;border-radius:14px;}
+@media(max-width:600px){.blog-main-img img{aspect-ratio:4/3;max-height:none;}}
+/* --- long-form reading ---------------------------------------------------
+   The article inherited the page's 900px content width at 16px/1.5, which runs
+   about 110 characters a line — far past the 60-75 where the eye reliably finds
+   the next line. Narrower measure, larger type, more leading. */
+.rich-section .rich-text{max-width:720px;margin-inline:auto;font-size:17px;
+ line-height:1.7;}
+.rich-section .rich-text h2{font-size:26px;line-height:1.25;margin:2em 0 .6em;}
+.rich-section .rich-text h3{font-size:20px;line-height:1.3;margin:1.8em 0 .5em;}
+.rich-section .rich-text p{margin:0 0 1.15em;}
+.rich-section .rich-text ul,.rich-section .rich-text ol{margin:0 0 1.35em;
+ padding-left:1.3em;}
+.rich-section .rich-text li{margin-bottom:.5em;}
+.rich-section .rich-text a{text-decoration:underline;text-underline-offset:2px;}
+.tmlblog-related{max-width:720px;margin-inline:auto;}
+@media(max-width:600px){.rich-section .rich-text{font-size:16px;}}
 .tmlblog-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:9px;flex:1;}
 .tmlblog-date{font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#6d7563;}
 .tmlblog-card h2{font-size:20px;line-height:1.3;margin:0;}
