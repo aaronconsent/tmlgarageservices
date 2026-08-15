@@ -20,6 +20,12 @@ What this does control is everything around it:
     scrolls past.
   * The frame itself — one clean white card with a border and rounded corners,
     rather than the widget's own grey butting against the page.
+  * The duplicate heading — the widget opens with its own "Schedule Garage Door
+    Services" title, which sat directly under our "Schedule your appointment",
+    under the hero's "Book online now". Three headings saying one thing. Ours
+    goes; the widget's stays, because that one cannot be removed from here.
+    The reassurance line underneath is kept — it is the only sentence of the
+    three that tells the visitor something new.
 
 Idempotent.
 """
@@ -62,6 +68,9 @@ def main():
         html = orig = f.read_text("utf-8", errors="replace")
         if "tmlworkiz-account" not in html:      # only pages running the live widget
             continue
+        # the widget supplies its own title; ours only repeated it
+        html = re.sub(r'(<div class="tb-panel-head">\s*)<h2>[^<]*</h2>', r"\1", html)
+
         html = re.sub(r'<style id="tmlwz-css">.*?</style>', "", html, flags=re.S)
         html = html.replace("</head>", CSS + "</head>", 1)
         if html != orig:

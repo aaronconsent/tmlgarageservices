@@ -1,0 +1,9 @@
+# TML Garage Door Services
+User-agent: *
+Allow: /
+
+# placeholder content held back from launch — see hide_pages.py
+Disallow: /teams/
+Disallow: /projects/
+
+Sitemap: https://www.tmlgarageservices.com/sitemap.xml
