@@ -30,11 +30,12 @@ One thing that was wrong rather than just inconsistent: the photograph of your
 Conroe location was described to screen readers as "TML Home Improvement 1488
 Conroe Texas". It now names the current business.
 
-**The Angi and HomeAdvisor badges now also appear inside "Why Choose TML Garage
-Door Services".** They were only at the very bottom of the page, below where most
-visitors ever scroll — now they sit with the argument they support. They are on
-white tiles because the badges have see-through backgrounds and that section is
-black; dropped in as-is they would have been nearly invisible.
+**The Angi and HomeAdvisor badges were copied into "Why Choose TML Garage Door
+Services" and then taken back out**, at your request. The Angi award is dated
+2019 and the HomeAdvisor badges have not been confirmed as current, so repeating
+them higher up the page would have put more weight on claims nobody has checked.
+The originals remain in the footer exactly as they were — nothing was removed
+from there.
 
 ---
 

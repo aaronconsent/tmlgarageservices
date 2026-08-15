@@ -23,6 +23,12 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 F = ROOT / "site" / "fixed"
 
+# Set False to take the copies back out of Why Choose (the originals in the footer
+# are untouched either way). Turned off: the Angi award is dated 2019 and the
+# HomeAdvisor badges have not been checked as current, so repeating them further
+# up the page put more weight on claims nobody has verified.
+SHOW_BADGES = False
+
 CSS = """<style id="tmlbadge-css">
 .tmlwhy-badges{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch;
  margin:0 0 26px;padding:0;list-style:none;}
@@ -74,6 +80,13 @@ def main():
             continue
         html = re.sub(r'<ul class="tmlwhy-badges">.*?</ul>', "", html, flags=re.S)
         html = re.sub(r'<style id="tmlbadge-css">.*?</style>', "", html, flags=re.S)
+
+        if not SHOW_BADGES:
+            if html != orig:
+                f.write_text(html, "utf-8")
+                pages += 1
+                print(f"  {f.relative_to(F)}: badge copies removed")
+            continue
 
         badges = badges_from(html)
         if len(badges) < 2:
