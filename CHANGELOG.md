@@ -22,8 +22,11 @@ booking page keeps the full booking widget, where a customer picks a service, a
 day and a time — a short enquiry form suits the other pages better than asking
 someone to schedule before they have even described the problem.
 
-Underneath each form there is still a Call, a Text, and a "Pick a time" link for
-anyone who would rather not type.
+The form now stands on its own, with no heading or explanatory line above it and
+no alternative-contact row beneath it. With that copy gone the surrounding panel
+would only have been a box inside a box, so it collapsed to a single card — which
+also gave the form more room: 570px wide on a desktop and 273px on a phone, up
+from 516px and 239px.
 
 Worth restating plainly: **before today, the form on these pages went nowhere.**
 Anything sent through it was lost without the sender knowing. That is now fixed.

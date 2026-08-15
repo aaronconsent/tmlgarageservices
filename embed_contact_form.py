@@ -28,43 +28,27 @@ PHONE, PHONE_HREF, SMS_HREF = "(832) 887-8747", "tel:+18328878747", "sms:+183288
 BOOK = "/fixed/schedule-consult"
 
 CSS = """<style id="tmlsaj-css">
-.tmlsaj{background:#f5f7ef;border:1px solid #dfe3d5;border-radius:16px;
- padding:clamp(18px,3vw,26px);max-width:640px;}
-.tmlsaj h3{margin:0 0 6px;font-size:clamp(20px,2.6vw,25px);line-height:1.15;color:#1f2418;}
-.tmlsaj>p{margin:0 0 16px;font-size:15.5px;line-height:1.55;color:#535c48;max-width:52ch;}
-.tmlsaj-frame{background:#fff;border:1px solid #dfe3d5;border-radius:12px;overflow:hidden;}
+/* just the form: no heading, no lead-in, no alternative-contact row. With the
+   copy gone the outer tinted panel would only have been a box inside a box, so
+   the frame collapsed to one card. */
+.tmlsaj{max-width:640px;}
+.tmlsaj-frame{background:#fff;border:1px solid #dfe3d5;border-radius:14px;overflow:hidden;}
 .tmlsaj-frame iframe{display:block;width:100%;border:0;}
-.tmlsaj-alt{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:16px 0 0;
- font-size:15px;color:#535c48;}
-.tmlsaj-alt a{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 16px;
- border-radius:10px;border:2px solid #1f2418;background:#fff;color:#1f2418;text-decoration:none;
- font-weight:700;font-size:15px;white-space:nowrap;transition:background .14s ease,color .14s ease;}
-.tmlsaj-alt a:hover{background:#1f2418;color:#fff;}
-.tmlsaj-alt a:focus-visible{outline:2px solid #587735;outline-offset:2px;}
 /* the legacy two-column rows on these pages never stacked on a phone, which left
-   the form about 239px of a 375px screen. Same fix the booking panel needed. */
+   the form about 239px of a 375px screen */
 @media(max-width:860px){
  .section-inner:has(.tmlsaj),.contact:has(.tmlsaj),
  .discuss-wrap:has(.tmlsaj),.services-wrap:has(.tmlsaj){display:block!important;}
  .tmlsaj{max-width:none;}
 }
-@media(max-width:600px){.tmlsaj{padding:16px;max-width:none;}}
-@media(prefers-reduced-motion:reduce){.tmlsaj-alt a{transition:none;}}
 </style>"""
 
 BLOCK = (
     '<div class="tmlsaj">'
-    "<h3>Request service</h3>"
-    "<p>Tell us what the door is doing and we'll get straight back to you. "
-    "Same-day and weekend appointments are available at no extra charge.</p>"
     f'<div class="tmlsaj-frame"><iframe src="{FORM_SRC}" title="Request service from TML '
     f'Garage Door Services" height="{FRAME_H}" scrolling="no" loading="lazy"'
     f' style="height:{FRAME_H}px"></iframe></div>'
-    '<p class="tmlsaj-alt">In a hurry?'
-    f'<a href="{PHONE_HREF}" data-book="call">&#9742; Call {PHONE}</a>'
-    f'<a href="{SMS_HREF}" data-book="text">&#128172; Text us</a>'
-    f'<a href="{BOOK}" data-book="book">Pick a time</a>'
-    "</p></div>")
+    "</div>")
 
 
 def balanced(html, start):
